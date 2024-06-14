@@ -1,0 +1,32 @@
+<div fxLayout="column">
+    <div fxLayout="row">
+        <div fxFlex="50">
+            <strong>Listado de nichos</strong>
+        </div>
+        <div fxFlex="50">
+            <button mat-flat-button (click)="irAlta()">Agregar nicho</button>
+        </div>
+    </div>
+    <div fxLayout="column" class="mt-20">
+        <table border="1">
+            <thead>
+              <tr>
+                  <td>Nombre Proyecto</td>
+                  <td>Descripción</td>
+                  <td>Acciones</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let nicho of listadoNichos">
+                  <td>{{nicho.nombre}}</td>
+                  <td>{{nicho.descripcion}}</td>
+                  <td>
+                      <button mat-flat-button (click)="configurarNicho(nicho._id)">Configurar</button>
+                      <button mat-flat-button>Editar</button>
+                      <button mat-flat-button>Eliminar</button>
+                  </td>
+              </tr>
+            </tbody>
+         </table>
+    </div>
+ </div>

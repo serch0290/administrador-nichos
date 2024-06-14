@@ -1,0 +1,19 @@
+<div fxLayout="column">
+    <strong>Nombre del proyecto</strong>
+    <span>Descripcion del proyecto</span>
+     _________________________________________________________________
+    <ng-container *ngIf="idConfiguracion == 0">
+        <span class="pointer" (click)="idConfiguracion = 1;">Config Dase de Datos</span>
+        <span class="pointer">Config General del sitio</span>
+        <span class="pointer">Blog</span>
+        <span class="pointer">Menu</span>
+        <span class="pointer">Footer</span>
+        <span class="pointer">Config FTP para subida de archivos</span>    
+    </ng-container>
+    
+    <ng-container [ngSwitch]="idConfiguracion">
+        <app-config-bd  *ngSwitchCase="1"></app-config-bd>
+    </ng-container> 
+
+
+</div>

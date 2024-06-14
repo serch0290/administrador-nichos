@@ -1,0 +1,17 @@
+<div fxLayout="column" class="p-100">
+    <strong>Alta Nicho</strong>
+    <div fxLayout="column" class="mt-20">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre Nicho</mat-label>
+            <input matInput [(ngModel)]="nombre" placeholder="Nombre Nicho">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Descripción Nicho</mat-label>
+            <input matInput [(ngModel)]="descripcion" placeholder="Nombre Nicho">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button class="mr-8" (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button (click)="guardarNicho()">Guardar</button>
+        </div>
+    </div>
+</div>
