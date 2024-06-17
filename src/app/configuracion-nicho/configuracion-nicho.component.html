@@ -1,10 +1,13 @@
-<div fxLayout="column">
-    <strong>Nombre del proyecto</strong>
-    <span>Descripcion del proyecto</span>
+<div fxLayout="column" *ngIf="!loading">
+    <strong>{{nicho.nombre}}</strong>
+    <span>{{nicho.descripcion}}</span>
      _________________________________________________________________
     <ng-container *ngIf="idConfiguracion == 0">
-        <span class="pointer" (click)="idConfiguracion = 1;">Config Dase de Datos</span>
-        <span class="pointer">Config General del sitio</span>
+        <span class="pointer" (click)="idConfiguracion = 1;">
+            Config Dase de Datos
+            <span *ngIf="nicho.database?.conexion" style="color: green;">Correcto</span>
+        </span>
+        <span class="pointer" (click)="idConfiguracion = 2;">Config General del sitio</span>
         <span class="pointer">Blog</span>
         <span class="pointer">Menu</span>
         <span class="pointer">Footer</span>
@@ -12,7 +15,8 @@
     </ng-container>
     
     <ng-container [ngSwitch]="idConfiguracion">
-        <app-config-bd  *ngSwitchCase="1"></app-config-bd>
+        <app-config-bd [nicho]="nicho" *ngSwitchCase="1" (salir)="idConfiguracion = 0"></app-config-bd>
+        <app-config-general [nicho]="nicho" *ngSwitchCase="2" (salir)="idConfiguracion = 0"></app-config-general>
     </ng-container> 
 
 

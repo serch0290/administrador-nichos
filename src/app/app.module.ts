@@ -15,6 +15,7 @@ import { ConfigBdComponent } from './configuracion-nicho/config-bd/config-bd.com
 import { ConfigGeneralComponent } from './configuracion-nicho/config-general/config-general.component';
 import { ConfigBlogComponent } from './configuracion-nicho/config-blog/config-blog.component';
 import { ConfigFtpComponent } from './configuracion-nicho/config-ftp/config-ftp.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConfigFtpComponent } from './configuracion-nicho/config-ftp/config-ftp.
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,17 @@
-<p>config-general works!</p>
+<div fxLayout="column" class="mt-20"  >
+    <mat-form-field>
+        <mat-label>Dominio:</mat-label>
+        <input matInput [(ngModel)]="nicho.general.dominio" placeholder="Dominio">
+    </mat-form-field>
+    <div class="w-100-p my-20" fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button (click)="generarCarpetasNicho()" 
+                [disabled]="nicho.general.carpetas">Generar carpetas contenedoras</button>
+        <span *ngIf="nicho.general.carpetas" style="color: green;">Carpetas generadas</span>
+    </div>
+    
+    <span>Selecciona el color que tendra la pagina</span>
+    <button mat-raised-button>Adjuntar fuentes</button>
+    <button mat-raised-button>Subir archivos proyecto</button>
+    <button mat-raised-button>Adjuntar logo del sitio</button>
+    <button mat-raised-button>Adjuntar icon del sitio</button>
+</div>

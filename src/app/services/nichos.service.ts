@@ -44,9 +44,25 @@ export class NichosService
     /**
      * Se consultan los datos generales del nicho
      */
-    consultaNichoById(id: string){
+    consultaNichoById(id: string): Observable<any>{
         return this._http.get(`${this.url}nichos/consulta/nicho/${id}`);
-       
+    }
+
+    /**
+     * 
+     * @param Se guarda la configuracion de BD que tiene el nicho
+     * @param idNicho 
+     * @returns 
+     */
+    guardarConfiguracionBD(dataBD: any, idNicho: string): Observable<any>{
+        return this._http.post(`${this.url}nichos/guardar/configuracion/bd/nicho/${idNicho}`, dataBD);
+    }
+
+    /**
+     * Se hace test de conexion a BD
+     */
+    testBD(dataBD: any): Observable<any>{
+        return this._http.post(`${this.url}nichos/test/BD`, dataBD);
     }
 
 }
