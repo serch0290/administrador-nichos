@@ -10,6 +10,14 @@
     </div>
     
     <span>Selecciona el color que tendra la pagina</span>
+    <div ngx-colors-trigger
+         style="width: 50px;height: 50px;margin:10px"
+         [style.background]="nicho.general.background"
+         [(ngModel)]="nicho.general.background"
+         [formats]="['hex','rgba']"></div>
+    {{nicho.general.background}}
+
+
     <button mat-raised-button>Adjuntar fuentes</button>
     <button mat-raised-button>Subir archivos proyecto</button>
     <button mat-raised-button>Adjuntar logo del sitio</button>

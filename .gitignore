@@ -16,7 +16,7 @@
 
 # dependencies
 /node_modules
-./angular
+/.angular
 
 # excluir carpeta Docs con los Documentos
 /comun

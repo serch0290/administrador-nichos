@@ -16,6 +16,7 @@ import { ConfigGeneralComponent } from './configuracion-nicho/config-general/con
 import { ConfigBlogComponent } from './configuracion-nicho/config-blog/config-blog.component';
 import { ConfigFtpComponent } from './configuracion-nicho/config-ftp/config-ftp.component';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxColorsModule } from 'ngx-colors';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxColorsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

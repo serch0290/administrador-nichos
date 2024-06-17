@@ -24,7 +24,7 @@ export class NichosService
     constructor(
         public _http: HttpClient,
     ) {
-        this.url = 'http://localhost:6007/arbitraje/';
+        this.url = 'http://localhost:5007/nchs/';
     }
 
     /**

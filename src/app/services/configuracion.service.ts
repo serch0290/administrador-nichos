@@ -24,14 +24,14 @@ export class ConfiguracionService
     constructor(
         public _http: HttpClient,
     ) {
-        this.url = 'http://localhost:6007/arbitraje/';
+        this.url = 'http://localhost:5007/nchs/';
     }
 
     /**
      * Se consulta el listad de nichos guardados
      */
-    generaCarpetasNicho(): Observable<any>{
-        return this._http.get(`${this.url}configuracion/generar/carpetas`);
+    generaCarpetasNicho(id: string, nombre: string, general: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/generar/carpetas/${nombre}/${id}`, general);
     }
 
 }

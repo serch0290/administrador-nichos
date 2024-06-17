@@ -33,6 +33,7 @@ export class ConfiguracionNichoComponent implements OnInit{
          .subscribe(response=>{
           this.nicho = response.nicho;
           this.nicho.database = response.database;
+          this.nicho.general = response.general;
           this.loading = false;
          });
    }
