@@ -17,6 +17,7 @@ import { ConfigBlogComponent } from './configuracion-nicho/config-blog/config-bl
 import { ConfigFtpComponent } from './configuracion-nicho/config-ftp/config-ftp.component';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxColorsModule } from 'ngx-colors';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NgxColorsModule } from 'ngx-colors';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
-    NgxColorsModule
+    NgxColorsModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

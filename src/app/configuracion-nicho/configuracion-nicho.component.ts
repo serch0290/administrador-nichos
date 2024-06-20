@@ -37,4 +37,9 @@ export class ConfiguracionNichoComponent implements OnInit{
           this.loading = false;
          });
    }
+
+   //PENDIENTES
+   //Agergar validacion en general que no se puede cargar fuente o logos hasta que hayas generado la estructura del proyecto
+   //analizar bien y no habilitar la siguiente opcion sin que este bien la anterior de botones y procesos
+   //me falta hacer todo lo de la base de datos, crear toda la estructura
 }

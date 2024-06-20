@@ -1,3 +1,4 @@
+<strong (click)="salir.emit()">Regresar</strong>
 <div fxLayout="column" class="mt-20"  >
     <mat-form-field>
         <mat-label>Dominio:</mat-label>
@@ -15,10 +16,18 @@
          [style.background]="nicho.general.background"
          [(ngModel)]="nicho.general.background"
          [formats]="['hex','rgba']"></div>
-    {{nicho.general.background}}
+        
+    <button mat-raised-button (click)="addFiles('1')">
+        Adjuntar fuentes
+        <span *ngIf="nicho.general.fuentes.length > 0" style="color: green;">Fuentes subidas</span>
+    </button>
+    <input type="file" id="add-file-button1" #addfilebutton ng2FileSelect
+           [uploader]="uploader" hidden accept="image/*" />
+    <div class="mb-20" fxLayout="row" *ngFor="let fuente of nicho.general.fuentes">
+        <span class="pr-4">file: {{fuente.file}}</span>
+        <span>name: {{fuente.name}}</span>
+    </div>
 
-
-    <button mat-raised-button>Adjuntar fuentes</button>
     <button mat-raised-button>Subir archivos proyecto</button>
     <button mat-raised-button>Adjuntar logo del sitio</button>
     <button mat-raised-button>Adjuntar icon del sitio</button>

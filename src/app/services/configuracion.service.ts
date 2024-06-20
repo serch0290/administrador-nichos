@@ -34,4 +34,11 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/generar/carpetas/${nombre}/${id}`, general);
     }
 
+    /**
+     * Se guarda la fuente adjuntada
+     */
+    guardarFuente(id:string, fuente: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/actualizar/fuente/${id}`, {fuente});
+    }
+
 }
