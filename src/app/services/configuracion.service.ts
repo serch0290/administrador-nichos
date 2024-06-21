@@ -41,4 +41,11 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/actualizar/fuente/${id}`, {fuente});
     }
 
+    /**
+     * Se suben archivos principales del proyecto
+     */
+    subirArchivos(id:string, nombre: string): Observable<any>{
+        return this._http.get(`${this.url}configuracion/subir/files/${id}/${nombre}`);
+    }
+
 }

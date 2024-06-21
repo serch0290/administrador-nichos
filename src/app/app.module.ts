@@ -18,6 +18,7 @@ import { ConfigFtpComponent } from './configuracion-nicho/config-ftp/config-ftp.
 import { MatButtonModule } from '@angular/material/button';
 import { NgxColorsModule } from 'ngx-colors';
 import { FileUploadModule } from 'ng2-file-upload';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     MatInputModule,
     MatButtonModule,
     NgxColorsModule,
-    FileUploadModule
+    FileUploadModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

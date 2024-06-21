@@ -143,9 +143,15 @@ export class ConfigGeneralComponent implements OnInit{
                                 { name: "tipo", value: tipo }
                               ]
                             });
-                            
+  }
 
-
-
+  /**
+  * Función para subir los archivos principales del proyecto
+  */
+  subirArchivos(){
+     this.configuracionService.subirArchivos(this.nicho.general._id, this.cleanNameVideo(this.nicho.nombre))
+         .subscribe(response=>{
+           console.log('respobse: ', response);           
+         });
   }
 }

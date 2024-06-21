@@ -1,6 +1,15 @@
 <div fxLayout="column" *ngIf="!loading">
     <strong>{{nicho.nombre}}</strong>
     <span>{{nicho.descripcion}}</span>
+     
+    <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Ambiente</mat-label>
+        <mat-select name="ambiente">
+          <mat-option [value]="1"> Pruebas </mat-option>
+          <mat-option [value]="2"> Produccion </mat-option>
+        </mat-select>
+        <mat-error>Es necesario seleccionar una moneda.</mat-error>
+      </mat-form-field>
      _________________________________________________________________
     <ng-container *ngIf="idConfiguracion == 0">
         <span class="pointer" (click)="idConfiguracion = 1;">
