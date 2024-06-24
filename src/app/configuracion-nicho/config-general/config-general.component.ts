@@ -99,6 +99,12 @@ export class ConfigGeneralComponent implements OnInit{
          case '1':
           this.guardarFuente(data);
           break;
+         case '2':
+           this.guardarLogo(data.url, data.cms);
+          break;
+         case '3':
+           this.guardarIcon(data.url, data.cms);
+          break;
        }
     }
 
@@ -110,10 +116,27 @@ export class ConfigGeneralComponent implements OnInit{
       alert('Ocurrió un error al cargar imagen');
     }
     // Función para modificar el nombre del archivo el momento que se agregue al uploader (Sólo en BD)
-    this.uploader.onAfterAddingFile = (fileItem: FileItem) => {
+    this.uploader.onAfterAddingFile = (fileItem: any) => {
       fileItem.withCredentials = false;
+      switch(fileItem.options.headers[1].value){
+        case '2':
+          fileItem.file.name = 'logo.' +  this.obtenerExtension(fileItem);
+          break;
+        case '3':
+          fileItem.file.name = 'icon.' +  this.obtenerExtension(fileItem);
+          break;
+      }
       fileItem.upload();
+
     }
+  }
+
+  /**
+   * Se obtiene la extensión del archivo
+   */
+  obtenerExtension(fileItem: any){
+     let ext = fileItem.file.name.split('.');
+     return ext[ext.length - 1];
   }
 
   /**
@@ -130,6 +153,34 @@ export class ConfigGeneralComponent implements OnInit{
     });
   }
 
+  /**
+   * Se guarda el logo en BD
+   */
+  guardarLogo(urlFile: string, urlCMS: string){
+    let logo = {
+      file: urlFile, 
+      fileCMS: urlCMS
+    }
+     this.configuracionService.guardarLogo(this.nicho.general._id, logo)
+        .subscribe(response=>{
+           this.nicho.general.logo = response.logo;
+        })
+  }
+
+  /**
+   * Se guarda el icon que va a tener el nicho
+   */
+  guardarIcon(urlFile: string, urlCMS: string){
+    let icon = {
+      file: urlFile, 
+      fileCMS: urlCMS
+    }
+     this.configuracionService.guardarIcon(this.nicho.general._id, icon)
+        .subscribe(response=>{
+           this.nicho.general.icon = response.icon;
+        })
+  }
+
 
   /**
   * Función para mostrar el explorador de archivos
@@ -140,7 +191,8 @@ export class ConfigGeneralComponent implements OnInit{
    this.uploader.setOptions({ url: 'http://localhost:5007/nchs/upload/file',
                               headers: [
                                 { name: "path", value: `${this.cleanNameVideo(this.nicho.nombre)}/assets` },
-                                { name: "tipo", value: tipo }
+                                { name: "tipo", value: tipo },
+                                { name: "id", value: this.nicho._id}
                               ]
                             });
   }
@@ -151,7 +203,10 @@ export class ConfigGeneralComponent implements OnInit{
   subirArchivos(){
      this.configuracionService.subirArchivos(this.nicho.general._id, this.cleanNameVideo(this.nicho.nombre))
          .subscribe(response=>{
-           console.log('respobse: ', response);           
+           if(response.status){
+              this.nicho.general.filesProyecto = true;
+              this.generarCarpetasNicho();
+           }   
          });
   }
 }

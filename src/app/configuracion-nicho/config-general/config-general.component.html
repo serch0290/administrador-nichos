@@ -22,13 +22,40 @@
         <span *ngIf="nicho.general.fuentes.length > 0" style="color: green;">Fuentes subidas</span>
     </button>
     <input type="file" id="add-file-button1" #addfilebutton ng2FileSelect
-           [uploader]="uploader" hidden accept="image/*" />
+           [uploader]="uploader" hidden />
     <div class="mb-20" fxLayout="row" *ngFor="let fuente of nicho.general.fuentes">
         <span class="pr-4">file: {{fuente.file}}</span>
         <span>name: {{fuente.name}}</span>
     </div>
 
-    <button mat-raised-button (click)="subirArchivos()">Subir archivos proyecto</button>
-    <button mat-raised-button>Adjuntar logo del sitio</button>
-    <button mat-raised-button>Adjuntar icon del sitio</button>
+    <button mat-raised-button (click)="subirArchivos()" class="my-20">
+        Subir archivos proyecto
+        <span *ngIf="nicho.general.filesProyecto" style="color: green;">
+             Archivos agregados al proyecto
+        </span>
+    </button>
+    <button mat-raised-button class="my-20" (click)="addFiles('2')">
+        Adjuntar logo del sitio 
+        <span *ngIf="nicho.general.logo" style="color: green;">
+            Logo adjuntado
+       </span>
+    </button>
+    <input type="file" id="add-file-button2" #addfilebutton ng2FileSelect
+           [uploader]="uploader" hidden accept="image/*" />
+
+    <button mat-raised-button (click)="addFiles('3')">
+        Adjuntar icon del sitio
+        <span *ngIf="nicho.general.icon" style="color: green;">
+            Icono adjuntado
+       </span>
+    </button>
+    <input type="file" id="add-file-button3" #addfilebutton ng2FileSelect
+           [uploader]="uploader" hidden accept="image/*" />
+
+    <div fxlayout="column" fxLayoutAlign="start center">
+        <button mat-raised-button (click)="generarCarpetasNicho()">
+            Guardar
+        </button>
+
+    </div>
 </div>

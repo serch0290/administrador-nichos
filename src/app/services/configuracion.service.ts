@@ -48,4 +48,24 @@ export class ConfiguracionService
         return this._http.get(`${this.url}configuracion/subir/files/${id}/${nombre}`);
     }
 
+    /**
+     * 
+     * @param Se guarda los datos del logo en BD
+     * @param logo 
+     * @returns 
+     */
+    guardarLogo(id: string, logo: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/guardar/logo/${id}`, {logo});
+    }
+
+     /**
+     * 
+     * @param Se guarda los datos del logo en BD
+     * @param logo 
+     * @returns 
+     */
+     guardarIcon(id: string, icon: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/guardar/icon/${id}`, {icon});
+    }
+
 }
