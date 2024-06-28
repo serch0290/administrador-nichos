@@ -1,1 +1,39 @@
-<p>config-blog works!</p>
+<div fxLayout="column">
+    <strong class="font-size-20">Categorias</strong>
+
+    <mat-form-field>
+        <mat-label>Alta Categoria</mat-label>
+        <input matInput placeholder="Categoria" [(ngModel)]="categoria.nombre">
+    </mat-form-field>
+    <mat-checkbox [checked]="categoria.menu">
+        Menu
+      </mat-checkbox>
+      <mat-form-field>
+        <mat-label>Url</mat-label>
+        <input matInput placeholder="Url" [(ngModel)]="categoria.url">
+    </mat-form-field>
+    <div fxLayout="column" fxLayoutAlign="center end">
+        <button mat-raised-button (click)="guardarCategoria()">guardar</button>
+    </div>
+    <div fxLayout="column">
+        <table border="1">
+            <thead>
+              <tr>
+                  <td>Categoria</td>
+                  <td>Acciones</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let categoria of listadoCategorias">
+                  <td>{{categoria.nombre}}</td>
+                  <td>
+                      <button mat-flat-button (click)="irListadoNoticias(categoria)">Noticias</button>
+                      <button mat-flat-button>Editar</button>
+                      <button mat-flat-button>Eliminar</button>
+                  </td>
+              </tr>
+            </tbody>
+         </table>
+    </div>
+
+</div>

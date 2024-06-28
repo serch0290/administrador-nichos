@@ -40,6 +40,9 @@
             Logo adjuntado
        </span>
     </button>
+    <div *ngIf="nicho.general.logo">
+        <img [src]="'http://localhost:3000/' + nicho.general.logo.fileCMS" class="w-100"/>
+    </div>
     <input type="file" id="add-file-button2" #addfilebutton ng2FileSelect
            [uploader]="uploader" hidden accept="image/*" />
 
@@ -52,8 +55,8 @@
     <input type="file" id="add-file-button3" #addfilebutton ng2FileSelect
            [uploader]="uploader" hidden accept="image/*" />
 
-    <div fxlayout="column" fxLayoutAlign="start center">
-        <button mat-raised-button (click)="generarCarpetasNicho()">
+    <div fxlayout="column" fxLayoutAlign="start center" class="mt-20">
+        <button mat-raised-button (click)="actualizarDatosNicho()">
             Guardar
         </button>
 

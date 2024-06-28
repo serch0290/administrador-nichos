@@ -209,4 +209,14 @@ export class ConfigGeneralComponent implements OnInit{
            }   
          });
   }
+
+  /**
+  * Función actualizar los datos del nicho
+  */
+  actualizarDatosNicho(){
+    this.configuracionService.actualizarDatosNicho(this.nicho._id, this.nicho.general)
+        .subscribe(response=>{
+          console.log('actualizacion: ', response);
+        });
+  }
 }

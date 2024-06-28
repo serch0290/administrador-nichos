@@ -1,0 +1,27 @@
+<div fxLayout="column">
+    <strong>{{categoria.nombre}}</strong>
+
+    <button mat-raised-button (click)="irAlta()" class="my-12">Alta</button>
+
+    <table border="1" class="mt-12" *ngIf="!detalle">
+        <thead>
+          <tr>
+              <td>Noticia</td>
+              <td>Acciones</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let noticia of listadoNoticias">
+              <td>{{noticia.nombre}}</td>
+              <td>
+                  <button mat-flat-button>Editar</button>
+                  <button mat-flat-button>Publicar</button>
+                  <button mat-flat-button>Eliminar</button>
+              </td>
+          </tr>
+        </tbody>
+     </table>
+     <div fxLayout="column" *ngIf="detalle">
+        <strong>{{noticia.nombre}}</strong>
+     </div>
+</div>

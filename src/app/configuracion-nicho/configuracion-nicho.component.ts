@@ -19,6 +19,7 @@ export class ConfiguracionNichoComponent implements OnInit{
                private nichosService: NichosService){
 
    }
+   
   ngOnInit(): void {
     this.idNicho = this.activatedRoute.snapshot.params['idNicho'];
     this.consultaDataNicho();
@@ -43,4 +44,5 @@ export class ConfiguracionNichoComponent implements OnInit{
    //analizar bien y no habilitar la siguiente opcion sin que este bien la anterior de botones y procesos
    //me falta hacer todo lo de la base de datos, crear toda la estructura
    //hacer bien mi servidor y consultar la imagen que adjunte
+   //El color por defaul me sale en blanco, ponerlos de otro color para saber
 } 

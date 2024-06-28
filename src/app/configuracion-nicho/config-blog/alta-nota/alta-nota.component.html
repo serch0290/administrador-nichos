@@ -1,0 +1,16 @@
+<div fxLayout="column">
+    <mat-form-field>
+        <mat-label>Titulo:</mat-label>
+        <input matInput [(ngModel)]="noticia.h1" placeholder="Titulo">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Autor:</mat-label>
+        <input matInput [(ngModel)]="noticia.author.nombre" placeholder="Titulo">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Descripcion Autor:</mat-label>
+        <textarea matInput [(ngModel)]="noticia.author.descripcion" placeholder="Titulo"></textarea>
+    </mat-form-field>
+
+
+</div>

@@ -66,6 +66,13 @@ export class ConfiguracionService
      */
      guardarIcon(id: string, icon: any): Observable<any>{
         return this._http.post(`${this.url}configuracion/guardar/icon/${id}`, {icon});
-    }
+     }
+
+     /**
+      * Se actualizan los datos del nicho
+      */
+     actualizarDatosNicho(id: string, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/actualizar/general/${id}`, nicho);
+     }
 
 }

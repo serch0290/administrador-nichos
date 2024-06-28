@@ -19,6 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxColorsModule } from 'ngx-colors';
 import { FileUploadModule } from 'ng2-file-upload';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NotasComponent } from './configuracion-nicho/config-blog/notas/notas.component';
+import { AltaNotaComponent } from './configuracion-nicho/config-blog/alta-nota/alta-nota.component';
+import { UploderComponent } from './templates/uploder/uploder.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import {MatSelectModule} from '@angular/material/select';
     ConfigBdComponent,
     ConfigGeneralComponent,
     ConfigBlogComponent,
-    ConfigFtpComponent
+    ConfigFtpComponent,
+    NotasComponent,
+    AltaNotaComponent,
+    UploderComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     NgxColorsModule,
     FileUploadModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
