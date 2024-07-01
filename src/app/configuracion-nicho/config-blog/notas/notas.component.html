@@ -1,7 +1,7 @@
 <div fxLayout="column">
     <strong>{{categoria.nombre}}</strong>
 
-    <button mat-raised-button (click)="irAlta()" class="my-12">Alta</button>
+    <button mat-raised-button (click)="irAlta('0')" class="my-12">Alta</button>
 
     <table border="1" class="mt-12" *ngIf="!detalle">
         <thead>
@@ -12,9 +12,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let noticia of listadoNoticias">
-              <td>{{noticia.nombre}}</td>
+              <td>{{noticia.h1}}</td>
               <td>
-                  <button mat-flat-button>Editar</button>
+                  <button mat-flat-button (click)="irAlta(noticia._id)">Editar</button>
                   <button mat-flat-button>Publicar</button>
                   <button mat-flat-button>Eliminar</button>
               </td>

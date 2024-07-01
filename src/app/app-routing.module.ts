@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'nicho/categoria/:idCategoria/notas/alta',
     component: AltaNotaComponent
+  },
+  {
+    path: 'nicho/categoria/:idCategoria/notas/alta/:idNoticia',
+    component: AltaNotaComponent
   }
 ];
 

@@ -45,4 +45,9 @@ export class ConfiguracionNichoComponent implements OnInit{
    //me falta hacer todo lo de la base de datos, crear toda la estructura
    //hacer bien mi servidor y consultar la imagen que adjunte
    //El color por defaul me sale en blanco, ponerlos de otro color para saber
+   //validacion que no se duplique el nombre del nicho
+   //Las imagenes ponerlas con el dominio, ahorita las estoy llamando directo a la carpeta
+   //creo que las redes sociales no lo deje bien
+   //uploader validacion que solo permita una umagen o reemplazarla, opción para eliminar la opción que se agrego de drag and drop
+   //Validacion para no pones 2 table content.
 } 

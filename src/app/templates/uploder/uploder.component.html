@@ -1,5 +1,5 @@
 <button mat-raised-button (click)="addFiles()">
-    Adjuntar
+    {{configuracion.nameButton}}
 </button>
-<input type="file" id="add-file-button" #addfilebutton ng2FileSelect
-      [uploader]="uploader" hidden />
+<input type="file" [id]="'add-file-button'+ configuracion.uuid" #addfilebutton ng2FileSelect
+       [uploader]="uploader" hidden />

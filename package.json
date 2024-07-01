@@ -6,7 +6,8 @@
     "start": "ng serve --open --port 5003",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -21,11 +22,14 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@ngbracket/ngx-layout": "^17.0.1",
+    "@types/uuid": "^10.0.0",
+    "ckeditor4-angular": "^5.1.0",
     "ng2-file-upload": "^5.0.0",
     "ngx-colors": "^3.6.0",
     "or": "^0.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "uuid": "^10.0.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

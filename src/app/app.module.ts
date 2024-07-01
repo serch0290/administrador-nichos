@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
@@ -23,6 +23,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NotasComponent } from './configuracion-nicho/config-blog/notas/notas.component';
 import { AltaNotaComponent } from './configuracion-nicho/config-blog/alta-nota/alta-nota.component';
 import { UploderComponent } from './templates/uploder/uploder.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,10 @@ import { UploderComponent } from './templates/uploder/uploder.component';
     NgxColorsModule,
     FileUploadModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    DragDropModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

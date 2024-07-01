@@ -2,4 +2,6 @@ ramiro --hijo
 
 guardar el numero del maesrtro
 comprar el shampoo
-comprar el ebook
+
+npm install --save @tinymce/tinymce-angular tinymce
+npm install angular-froala-wysiwyg froala-editor

@@ -52,4 +52,22 @@ export class BlogService
         return this._http.get(`${this.url}blog/consuta/datos/nicho/${idCategoria}`);
     }
 
+    /**
+     * 
+     * @param Se guarda noticia
+     * @returns 
+     */
+    guardarNoticia(idCategoria: string, noticia: any): Observable<any>{
+        return this._http.post(`${this.url}blog/guardar/noticia/${idCategoria}`, noticia);  
+    }
+
+    /**
+     * 
+     * @param idNoticia Se consulta la noticia
+     * @returns 
+     */
+    consultaNoticiaById(idNoticia: string): Observable<any>{
+        return this._http.get(`${this.url}blog/consulta/noticia/${idNoticia}`);  
+    }
+
 }

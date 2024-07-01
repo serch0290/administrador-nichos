@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" *ngIf="!loading">
     <mat-form-field>
         <mat-label>Titulo:</mat-label>
         <input matInput [(ngModel)]="noticia.h1" placeholder="Titulo">
@@ -11,6 +11,83 @@
         <mat-label>Descripcion Autor:</mat-label>
         <textarea matInput [(ngModel)]="noticia.author.descripcion" placeholder="Titulo"></textarea>
     </mat-form-field>
-
-
+    <div fxLayout="column">
+        <app-uploder [configuracion]="opcionesUploaderAuthor" 
+                     *ngIf="opcionesUploaderAuthor"
+                     (onAfter)="cargaArchivo($event, 1)"
+                     (onSuccess)="guardarNoticia($event, 1)"></app-uploder>
+        <ng-container *ngIf="opcionesUploaderAuthor && opcionesUploaderAuthor.files.length > 0">
+                <img [src]="'http://localhost:3000/' + noticia.author.foto" style="max-width: 200px;" />
+        </ng-container>
+    </div>
+    <div fxLayout="column" class="mt-8">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" 
+                                 [(ngModel)]="tipoSeleccion"
+                                 (click)="mostrarOpcion($event)">
+            <mat-button-toggle value="img">Imagen</mat-button-toggle>
+            <mat-button-toggle value="html">HTML</mat-button-toggle>
+            <mat-button-toggle value="h2">h2</mat-button-toggle>
+            <mat-button-toggle value="h3">h3</mat-button-toggle>
+            <mat-button-toggle value="list">List</mat-button-toggle>
+            <mat-button-toggle value="list-number">List Numeric</mat-button-toggle>
+            <mat-button-toggle value="video">Video</mat-button-toggle>
+            <mat-button-toggle value="table-content">Table Content</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <div fxLayout="column" class="mt-20">
+        <div cdkDropList class="contenedor" (cdkDropListDropped)="drop($event)">
+              <div cdkDrag fxLayout="column" class="my-20 box" *ngFor="let detalle of noticia.detalle; let index = index">
+                <div fxLayout="column" *ngIf="detalle.type.includes('html')">
+                    <div>Type: {{detalle.type}}</div>
+                    <div [innerHtml]="detalle.html" *ngIf="!detalle.edit"></div>
+                    <ckeditor class="h-100-p" *ngIf="detalle.edit" contenteditable="true"  [(ngModel)]="detalle.html">
+                    </ckeditor>
+                    <div fxlayout="column" fxLayoutAlign="end center">
+                        <button mat-raised-button (click)="detalle.edit = !detalle.edit;">{{detalle.edit ? 'Guardar' : 'Editar'}}</button>
+                    </div>
+                </div>
+                <div class="w-100-p" fxLayout="column" *ngIf="detalle.type.includes('h2') || detalle.type.includes('h3')">
+                    <div>Type: {{detalle.type}}</div>
+                    <textarea [(ngModel)]="detalle.data"></textarea>
+                    <button mat-raised-button (click)="guardarH(detalle)">Guardar</button>
+                </div>
+                <div class="w-100-p" fxLayout="column" *ngIf="detalle.type.includes('list')">
+                    <div>Type: {{detalle.type}}</div>
+                    <textarea style="text-align: left;" [(ngModel)]="detalle.name"></textarea>
+                    <button mat-raised-button (click)="addList(detalle)">Agregar</button>
+                    <div cdkDropList class="contenedor" (cdkDropListDropped)="droplist($event, detalle.list)">
+                        <div cdkDrag fxLayout="column" class="my-20 box" *ngFor="let lista of detalle.list">
+                            {{lista.name}}
+                        </div>
+                    </div>
+                    <button mat-raised-button (click)="llenarTableContent()">Guardar</button>
+                </div>
+                <div fxLayout="column" class="w-100-p" *ngIf="detalle.type.includes('table-content')">
+                    <div>Type: {{detalle.type}}</div>
+                    <ul>
+                        <li *ngFor="let content of detalle.list">
+                            {{content.name}}
+                            <ul *ngIf="content.sublist.length > 0">
+                                <li *ngFor="let list1 of content.sublist">
+                                    {{list1.name}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div fxLayout="column" class="w-100-p" *ngIf="detalle.type.includes('video')">
+                    <textarea style="text-align: left;" [(ngModel)]="detalle.video"></textarea>
+                </div>
+                <div fxLayout="column" class="w-100-p" *ngIf="detalle.type.includes('img')">
+                    <app-uploder [configuracion]="detalle.uploader" (onAfter)="cargaArchivo($event, 2)"  (onSuccess)="guardarNoticia($event, 2, detalle)"></app-uploder>
+                    <ng-container *ngIf="detalle.uploader && detalle.uploader.files.length > 0">
+                        <img [src]="'http://localhost:3000/' + detalle.img" style="max-width: 200px;" />
+                    </ng-container>
+                </div>
+              </div>
+          </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center end">
+        <button mat-raised-button (click)="finalizarNoticia()">Terminar Noticia</button>
+    </div>
 </div>

@@ -50,8 +50,11 @@ export class NotasComponent implements OnInit{
     /**
      * Se da de alta la noticia
      */
-    irAlta(){
-       this.router.navigate([`/nicho/categoria/${this.idCategoria}/notas/alta`]);
+    irAlta(idNoticia: string){
+       if(idNoticia == '0')
+          this.router.navigate([`/nicho/categoria/${this.idCategoria}/notas/alta`]);
+        else 
+          this.router.navigate([`/nicho/categoria/${this.idCategoria}/notas/alta/${idNoticia}`]);
     }
 
     /**
