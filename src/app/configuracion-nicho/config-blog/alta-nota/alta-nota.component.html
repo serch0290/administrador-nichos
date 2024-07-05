@@ -1,7 +1,8 @@
+<strong (click)="regresar()">Regresar</strong>
 <div fxLayout="column" *ngIf="!loading">
     <mat-form-field>
         <mat-label>Titulo:</mat-label>
-        <input matInput [(ngModel)]="noticia.h1" placeholder="Titulo">
+        <input matInput [(ngModel)]="noticia.h1" placeholder="Titulo" (blur)="llenadoRedes()">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Autor:</mat-label>
@@ -18,6 +19,20 @@
                      (onSuccess)="guardarNoticia($event, 1)"></app-uploder>
         <ng-container *ngIf="opcionesUploaderAuthor && opcionesUploaderAuthor.files.length > 0">
                 <img [src]="'http://localhost:3000/' + noticia.author.foto" style="max-width: 200px;" />
+        </ng-container>
+    </div>
+    <div fxLayout="column" class="mt-12">
+        <mat-slide-toggle
+        [(ngModel)]="noticia.comentarios">
+        Comentarios
+      </mat-slide-toggle>
+    </div>
+    <div fxLayout="row" class="mt-12" *ngIf="listadoRedes.length > 0">
+        <button mat-raised-button (click)="selecccionarTodos()">Seleccionar todos</button>
+        <ng-container *ngFor="let red of listadoRedes">
+            <mat-checkbox [(ngModel)]="red.seleccionado">
+                {{red.name}}
+            </mat-checkbox>
         </ng-container>
     </div>
     <div fxLayout="column" class="mt-8">
@@ -76,9 +91,11 @@
                     </ul>
                 </div>
                 <div fxLayout="column" class="w-100-p" *ngIf="detalle.type.includes('video')">
+                    <div>Type: {{detalle.type}}</div>
                     <textarea style="text-align: left;" [(ngModel)]="detalle.video"></textarea>
                 </div>
                 <div fxLayout="column" class="w-100-p" *ngIf="detalle.type.includes('img')">
+                    <div>Type: {{detalle.type}}</div>
                     <app-uploder [configuracion]="detalle.uploader" (onAfter)="cargaArchivo($event, 2)"  (onSuccess)="guardarNoticia($event, 2, detalle)"></app-uploder>
                     <ng-container *ngIf="detalle.uploader && detalle.uploader.files.length > 0">
                         <img [src]="'http://localhost:3000/' + detalle.img" style="max-width: 200px;" />

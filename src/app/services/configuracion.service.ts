@@ -75,4 +75,13 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/actualizar/general/${id}`, nicho);
      }
 
+     /**
+      * 
+      * @param idNicho Se generan las rutas de la pagina
+      * @returns 
+      */
+     generarRutas(idNicho: string, data: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/generar/routing/${idNicho}`, data);
+     }
+
 }

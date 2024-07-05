@@ -25,6 +25,7 @@ import { AltaNotaComponent } from './configuracion-nicho/config-blog/alta-nota/a
 import { UploderComponent } from './templates/uploder/uploder.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CKEditorModule } from 'ckeditor4-angular';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     MatCheckboxModule,
     MatButtonToggleModule,
     DragDropModule,
-    CKEditorModule
+    CKEditorModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { cleanText } from 'src/app/lib/helpers';
 import { BlogService } from 'src/app/services/blog.service';
+import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { v4 as uuidv4 } from 'uuid';
 declare var CKEDITOR: any;
 
@@ -9,7 +11,7 @@ declare var CKEDITOR: any;
   selector: 'app-alta-nota',
   templateUrl: './alta-nota.component.html',
   styleUrls: ['./alta-nota.component.scss'],
-  providers: [BlogService]
+  providers: [BlogService, ConfiguracionService]
 })
 export class AltaNotaComponent implements OnInit{
 
@@ -22,16 +24,41 @@ export class AltaNotaComponent implements OnInit{
   public prueba: string = '';
   public idNoticia: string = '';
   public loading: boolean = true;
+  public listadoRedes: Array<any> = [];
   
   constructor(private blogService: BlogService,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private configuracionService:ConfiguracionService
   ){}
 
   ngOnInit(): void {
       this.idCategoria = this.activatedRoute.snapshot.params['idCategoria'];
       this.idNoticia = this.activatedRoute.snapshot.params['idNoticia'];
-
       this.consultaDatosNicho();
+  }
+
+  /**
+   * Listado de redes sociales que se van a poder compartir en la pagina
+   */
+  llenadoRedes(){
+     this.listadoRedes.push({link: `https://www.facebook.com/sharer/sharer.php?u=`, name:'Facebook', class: 'facebook', icons: 'fa-brands fa-facebook-f'});
+     this.listadoRedes.push({link: `fb-messenger://share/?link=`, name:'Facebook Messenger', class: "facebook-messenger", icon: 'fa-brands fa-facebook-messenger'});
+     this.listadoRedes.push({link: `https://x.com/intent/tweet?text=${this.noticia.h1}&url=`, name:'Twitter', class: 'twitter', icon: 'fa-brands fa-x-twitter'});
+     this.listadoRedes.push({link: `https://pinterest.com/pin/create/button/?url=`, name:'Pinterest', class: 'pinterest',icon: 'fa-brands fa-pinterest-p'});
+     this.listadoRedes.push({link: `https://wa.me/?text=${this.noticia.h1}%20-%20`, name:'Whatsapp', class: 'whatsapp', icon: 'fa-brands fa-whatsapp'});
+     this.listadoRedes.push({link: 'https://tumblr.com/widgets/share/tool?canonicalUrl=', name:'Tumblr', class: 'tumblr', icon: 'fa-brands fa-tumblr'});
+     this.listadoRedes.push({link: 'https://www.linkedin.com/shareArticle?mini=true&url=', name:'Linkedin', class: 'linkedin', icon: 'fa-brands fa-linkedin'});
+     this.listadoRedes.push({link: `https://t.me/share/url?text=${this.noticia.h1}&url=`, name:'Telegram', class: 'telegram", icon: "fa-brands fa-telegram'});
+     this.listadoRedes.push({link: `mailto:?subject=${this.noticia.h1}&body=`, name:'Mail', class: 'email', icon: 'fa-regular fa-envelope'});
+     this.listadoRedes.push({link: `http://reddit.com/submit?title=${this.noticia.h1}&url=`, name:'Reddit', class: 'reedit', icon: 'fa-brands fa-reddit-alien'});
+  }
+
+  /**Se seleccionan todas la redes socuales */
+  selecccionarTodos(){
+    this.listadoRedes.forEach(element => {
+      element.seleccionado = !element.seleccionado;
+    });
   }
 
   /**
@@ -41,6 +68,7 @@ export class AltaNotaComponent implements OnInit{
     this.blogService.consultaDatosNicho(this.idCategoria)
         .subscribe(response=>{
           this.nicho = response.nicho;
+          this.nicho.general = response.general;
           this.categoria = response.categoria;
           if(this.idNoticia){
              this.consultaNoticia();
@@ -66,8 +94,16 @@ export class AltaNotaComponent implements OnInit{
   consultaNoticia(){
      this.blogService.consultaNoticiaById(this.idNoticia)
          .subscribe(response=>{
-          this.loading = false;
           this.noticia = response;
+          this.listadoRedes = this.noticia.redesSociales;
+          this.noticia.detalle.forEach((item: any) => {
+              if(item.type.includes('img')){
+                 item.uploader = this.getUploader();
+              }
+          });
+          setTimeout(() => {
+            this.loading = false;
+          });
          })
   }
 
@@ -185,6 +221,21 @@ export class AltaNotaComponent implements OnInit{
   
  }
 
+ /**
+  * Se pone el uploader a las imagenes adjuntas
+  */
+ getUploader(){
+  let uploader = {
+    path: `${this.cleanNameVideo(this.nicho.nombre)}/assets/images/noticias`,
+    tipo: '4',
+    id: this.nicho._id,
+    uuid: uuidv4(),
+    nameButton: 'Adjuntar Imagen',
+    files: []
+  }
+  return uploader;
+ }
+
 
  /**
    * Se obtiene la extensión del archivo
@@ -256,15 +307,49 @@ export class AltaNotaComponent implements OnInit{
    * Se guarda la nota en BD
    */
   finalizarNoticia(){
+    this.setBreadCrumbs();
+    this.generarRouting();
+    this.noticia.redesSociales = this.listadoRedes.filter(item=> item.seleccionado);
     this.noticia.url = this.cleanNameVideo(this.noticia.h1);
     let nota = JSON.parse(JSON.stringify(this.noticia));
     nota.detalle.forEach((element: any) => {
       if(element.type.includes('img')) delete element.uploader;
     });
-    this.blogService.guardarNoticia(this.idCategoria, nota)
+
+    let nicho = {
+      nombre: this.cleanNameVideo(this.nicho.nombre)
+    }
+    this.blogService.guardarNoticia(this.idCategoria, nota, nicho)
         .subscribe(response=>{
-            console.log('noticia: ', response);
+            this.regresar();
         });
+  }
+
+  /**
+   * Se genera el routing de la pagina de acuerdo a las rutas que haya dispinibles
+   */
+  generarRouting(){
+    let data = {
+      dominio: this.nicho.general.dominio,
+      proyecto: cleanText(this.nicho.nombre)
+    }
+    this.configuracionService.generarRutas(this.nicho._id, data)
+        .subscribe(response=>{
+           console.log('response: ', response);
+        });
+  }
+
+  /**Se ponen los breadcrumbs */
+  setBreadCrumbs(){
+    this.noticia.breadcrumb = [];
+    this.noticia.breadcrumb.push({name: 'Inicio', link: '/' + this.nicho.general.dominio});
+    this.noticia.breadcrumb.push({name: this.categoria.nombre, link: '/' + this.nicho.general.dominio + this.categoria.url});
+    this.noticia.breadcrumb.push({name: this.noticia.h1});
+  }
+
+  /**Se regresa al listado de noticias de la categoria */
+  regresar(){
+    this.router.navigate([`nicho/categoria/${this.idCategoria}/notas`]);
   }
 
 }

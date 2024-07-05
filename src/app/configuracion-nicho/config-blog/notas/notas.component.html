@@ -1,6 +1,7 @@
 <div fxLayout="column">
-    <strong>{{categoria.nombre}}</strong>
 
+    <strong (click)="regresar()">Regresar</strong>
+    <strong class="py-12">{{categoria.h1}}</strong>
     <button mat-raised-button (click)="irAlta('0')" class="my-12">Alta</button>
 
     <table border="1" class="mt-12" *ngIf="!detalle">

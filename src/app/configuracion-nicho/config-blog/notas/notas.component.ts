@@ -57,6 +57,10 @@ export class NotasComponent implements OnInit{
           this.router.navigate([`/nicho/categoria/${this.idCategoria}/notas/alta/${idNoticia}`]);
     }
 
+    regresar(){
+      this.router.navigate([`/nicho/configuracion/${this.nicho._id}`]);
+    }
+
     /**
      * Se muestra el detalle de la noticia
      */

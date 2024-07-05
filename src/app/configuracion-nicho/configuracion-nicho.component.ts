@@ -50,4 +50,20 @@ export class ConfiguracionNichoComponent implements OnInit{
    //creo que las redes sociales no lo deje bien
    //uploader validacion que solo permita una umagen o reemplazarla, opción para eliminar la opción que se agrego de drag and drop
    //Validacion para no pones 2 table content.
+   //meter fechas de creacion mas que nada en notas y categorias para saber
+   //ya lo pnese y cuando sea produ, poner el dominio donde ya agregue el campo y cuando sea pruebas sera el nombre de la carpeta como lo toma xampp, yo ponerlo con la funcion que creee
+   //lo de las imagenes como voy a dejar las 3 opciones
+   //Agregar validación que hasta wue llenes todo se pueda guardar, esto porque ahi genero rutas y necesito que los datos esten completos
+   //al proyecto le falta compiar el htaccsess
+
+
+   //QUE SIGUE
+   //Generar ya todos los archivos y jsons
+   //Subir datos al FTP
+   //crear todo en data de mysql
+   //comentarios
+   //Notaas, crear pero no publicar
+   //versiones se archivo si ya subi a producción
+
+
 } 

@@ -25,8 +25,8 @@ export class BlogService
     /**
      * Se consulta el listad de nichos guardados
      */
-    guardarCategoria(id: string, categoria: any): Observable<any>{
-        return this._http.post(`${this.url}blog/guardar/categoria/${id}`, categoria);
+    guardarCategoria(id: string, categoria: any, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}blog/guardar/categoria/${id}`, {categoria, nicho});
     }
 
     /**
@@ -57,8 +57,8 @@ export class BlogService
      * @param Se guarda noticia
      * @returns 
      */
-    guardarNoticia(idCategoria: string, noticia: any): Observable<any>{
-        return this._http.post(`${this.url}blog/guardar/noticia/${idCategoria}`, noticia);  
+    guardarNoticia(idCategoria: string, noticia: any, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}blog/guardar/noticia/${idCategoria}`, {noticia, nicho});  
     }
 
     /**

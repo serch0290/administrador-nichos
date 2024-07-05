@@ -2,16 +2,20 @@
     <strong class="font-size-20">Categorias</strong>
 
     <mat-form-field>
-        <mat-label>Alta Categoria</mat-label>
-        <input matInput placeholder="Categoria" [(ngModel)]="categoria.nombre">
+        <mat-label>Nombre Categoria</mat-label>
+        <input matInput placeholder="Categoria" [(ngModel)]="categoria.h1">
     </mat-form-field>
-    <mat-checkbox [checked]="categoria.menu">
-        Menu
-      </mat-checkbox>
-      <mat-form-field>
-        <mat-label>Url</mat-label>
-        <input matInput placeholder="Url" [(ngModel)]="categoria.url">
+    <mat-form-field>
+        <mat-label>Titulo</mat-label>
+        <input matInput placeholder="titulo" [(ngModel)]="categoria.title">
     </mat-form-field>
+
+    <mat-checkbox [checked]="categoria.menu">Menu</mat-checkbox>
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput placeholder="Url" [(ngModel)]="categoria.url">
+    </mat-form-field>
+
     <div fxLayout="column" fxLayoutAlign="center end">
         <button mat-raised-button (click)="guardarCategoria()">guardar</button>
     </div>
@@ -25,7 +29,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let categoria of listadoCategorias">
-                  <td>{{categoria.nombre}}</td>
+                  <td>{{categoria.h1}}</td>
                   <td>
                       <button mat-flat-button (click)="irListadoNoticias(categoria)">Noticias</button>
                       <button mat-flat-button>Editar</button>

@@ -214,9 +214,24 @@ export class ConfigGeneralComponent implements OnInit{
   * Función actualizar los datos del nicho
   */
   actualizarDatosNicho(){
+    this.generarRouting();
     this.configuracionService.actualizarDatosNicho(this.nicho._id, this.nicho.general)
         .subscribe(response=>{
           console.log('actualizacion: ', response);
+        });
+  }
+
+  /**
+   * Se genera el routing de la pagina de acuerdo a las rutas que haya dispinibles
+   */
+  generarRouting(){
+    let data = {
+      dominio: this.nicho.general.dominio,
+      proyecto: this.cleanNameVideo(this.nicho.nombre)
+    }
+    this.configuracionService.generarRutas(this.nicho._id, data)
+        .subscribe(response=>{
+           console.log('response: ', response);
         });
   }
 }
