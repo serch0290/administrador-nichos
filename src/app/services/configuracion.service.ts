@@ -71,8 +71,8 @@ export class ConfiguracionService
      /**
       * Se actualizan los datos del nicho
       */
-     actualizarDatosNicho(id: string, nicho: any): Observable<any>{
-        return this._http.post(`${this.url}configuracion/actualizar/general/${id}`, nicho);
+     actualizarDatosNicho(id: string, general: any, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/actualizar/general/${id}`, {general, nicho});
      }
 
      /**

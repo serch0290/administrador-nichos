@@ -54,8 +54,8 @@ export class NichosService
      * @param idNicho 
      * @returns 
      */
-    guardarConfiguracionBD(dataBD: any, idNicho: string): Observable<any>{
-        return this._http.post(`${this.url}nichos/guardar/configuracion/bd/nicho/${idNicho}`, dataBD);
+    guardarConfiguracionBD(bd: any, idNicho: string, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}nichos/guardar/configuracion/bd/nicho/${idNicho}`, {bd, nicho});
     }
 
     /**

@@ -38,6 +38,8 @@ export class ConfigBlogComponent implements OnInit{
      let nicho = {
        nombre: cleanText(this.nicho.nombre)
     }
+
+    console.log('categoria: ', this.categoria);
      this.blogService.guardarCategoria(this.nicho._id, this.categoria, nicho)
          .subscribe(response=>{
            this.consultaListadoCategorias();

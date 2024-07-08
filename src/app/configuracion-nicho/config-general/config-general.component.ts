@@ -106,6 +106,11 @@ export class ConfigGeneralComponent implements OnInit{
            this.guardarIcon(data.url, data.cms);
           break;
        }
+
+       let button = document.getElementById('add-file-button' + data.tipo);
+          if(button){
+             button.setAttribute('value', '');
+          }
     }
 
     this.uploader.onBeforeUploadItem = (fileItem: FileItem) => {
@@ -215,7 +220,10 @@ export class ConfigGeneralComponent implements OnInit{
   */
   actualizarDatosNicho(){
     this.generarRouting();
-    this.configuracionService.actualizarDatosNicho(this.nicho._id, this.nicho.general)
+    let nicho = {
+      name: this.cleanNameVideo(this.nicho.nombre)
+    }
+    this.configuracionService.actualizarDatosNicho(this.nicho._id, this.nicho.general, nicho)
         .subscribe(response=>{
           console.log('actualizacion: ', response);
         });
@@ -233,5 +241,16 @@ export class ConfigGeneralComponent implements OnInit{
         .subscribe(response=>{
            console.log('response: ', response);
         });
+  }
+
+  /**
+   * 
+   * @param fuente Se elimina la fuente seleccionada
+   */
+  eliminarFuente(fuente: any){
+      const index = this.nicho.general.fuentes.indexOf(fuente);
+      if(index !== -1){
+         this.nicho.general.fuentes.splice(index, 1);
+      }
   }
 }

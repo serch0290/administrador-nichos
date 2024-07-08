@@ -10,13 +10,15 @@
         <input matInput placeholder="titulo" [(ngModel)]="categoria.title">
     </mat-form-field>
 
-    <mat-checkbox [checked]="categoria.menu">Menu</mat-checkbox>
+    <mat-checkbox [(ngModel)]="categoria.menu">Menu</mat-checkbox>
     <mat-form-field>
       <mat-label>Url</mat-label>
       <input matInput placeholder="Url" [(ngModel)]="categoria.url">
     </mat-form-field>
 
-    <div fxLayout="column" fxLayoutAlign="center end">
+    <mat-checkbox [(ngModel)]="categoria.home">Home</mat-checkbox>
+
+    <div fxLayout="column" class="mb-20" fxLayoutAlign="center end">
         <button mat-raised-button (click)="guardarCategoria()">guardar</button>
     </div>
     <div fxLayout="column">
@@ -30,10 +32,13 @@
             <tbody>
               <tr *ngFor="let categoria of listadoCategorias">
                   <td>{{categoria.h1}}</td>
-                  <td>
+                  <td *ngIf="!categoria.home">
                       <button mat-flat-button (click)="irListadoNoticias(categoria)">Noticias</button>
                       <button mat-flat-button>Editar</button>
                       <button mat-flat-button>Eliminar</button>
+                  </td>
+                  <td *ngIf="categoria.home">
+                      <button mat-flat-button>Configurar</button>
                   </td>
               </tr>
             </tbody>

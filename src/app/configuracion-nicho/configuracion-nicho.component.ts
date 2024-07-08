@@ -55,7 +55,8 @@ export class ConfiguracionNichoComponent implements OnInit{
    //lo de las imagenes como voy a dejar las 3 opciones
    //Agregar validación que hasta wue llenes todo se pueda guardar, esto porque ahi genero rutas y necesito que los datos esten completos
    //al proyecto le falta compiar el htaccsess
-
+   //Hacer un panorama general, al momento de subir una noticia o en algun lugar para ahi ver que le falta por subir o ocmo esta el seo entre otras cosas. bien
+   //En categorias solo permitir una home, si se pone otra decir que no se puede o algo asi
 
    //QUE SIGUE
    //Generar ya todos los archivos y jsons
@@ -64,6 +65,7 @@ export class ConfiguracionNichoComponent implements OnInit{
    //comentarios
    //Notaas, crear pero no publicar
    //versiones se archivo si ya subi a producción
+   //Enlazado de noticias, manual ya con el tiempo programarlo a automatico
 
 
 } 

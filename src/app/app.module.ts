@@ -58,7 +58,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonToggleModule,
     DragDropModule,
     CKEditorModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { cleanText } from 'src/app/lib/helpers';
 import { NichosService } from 'src/app/services/nichos.service';
 
 @Component({
@@ -32,7 +33,11 @@ export class ConfigBdComponent implements OnInit{
         return;
      }
 
-     this.nichosService.guardarConfiguracionBD(this.nicho.database, this.nicho._id)
+     let nicho = {
+        nombre: cleanText(this.nicho.nombre)
+     }
+
+     this.nichosService.guardarConfiguracionBD(this.nicho.database, this.nicho._id, nicho)
         .subscribe(response=>{
           this.nicho.database_id = response._id;
         });

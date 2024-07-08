@@ -23,11 +23,31 @@
     </button>
     <input type="file" id="add-file-button1" #addfilebutton ng2FileSelect
            [uploader]="uploader" hidden />
-    <div class="mb-20" fxLayout="row" *ngFor="let fuente of nicho.general.fuentes">
-        <span class="pr-4">file: {{fuente.file}}</span>
-        <span>name: {{fuente.name}}</span>
-    </div>
-
+    <table class="my-20" *ngIf="nicho.general.fuentes.length > 0" border="1">
+        <thead>
+            <tr>
+                <th>Fuente</th>
+                <th>Nombre</th>
+                <th>Negritas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fuente of nicho.general.fuentes">
+                <td class="text-center">
+                    {{fuente.file}}
+                </td>
+                <td class="text-center">
+                    {{fuente.name}}
+                </td>
+                <td class="text-center">
+                    <mat-checkbox [(ngModel)]="fuente.negrita"></mat-checkbox>
+                    <button mat-icon-button (click)="eliminarFuente(fuente)">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <button mat-raised-button (click)="subirArchivos()" class="my-20">
         Subir archivos proyecto
         <span *ngIf="nicho.general.filesProyecto" style="color: green;">
