@@ -1,0 +1,29 @@
+<strong (click)="regresar()">Regresar</strong>
+<div fxLayout="column">
+    <mat-form-field>
+        <mat-label>Titulo:</mat-label>
+        <input matInput [(ngModel)]="noticia.h1" placeholder="Titulo">
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="noticia.paginador" (change)="setDatosPaginador($event)">Paginador</mat-checkbox>
+
+    <div fxLayout="column" *ngIf="noticia.paginador" class="mt-20">
+        <mat-form-field>
+            <mat-label>Titulo:</mat-label>
+            <input matInput [(ngModel)]="noticia.noticias_style1.title" placeholder="Titulo">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Dominio:</mat-label>
+            <input matInput [(ngModel)]="noticia.noticias_style1.dominio" placeholder="Dominio">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Prefijo:</mat-label>
+            <input matInput [(ngModel)]="noticia.noticias_style1.prefijo" placeholder="Prefijo">
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="column" class="mt-20" fxLayoutAlign="center end">
+        <button mat-raised-button (click)="guardarConfiguracion()">Guardar Configuracion</button>
+    </div>
+
+</div>

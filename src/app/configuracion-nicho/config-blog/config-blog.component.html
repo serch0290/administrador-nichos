@@ -38,7 +38,7 @@
                       <button mat-flat-button>Eliminar</button>
                   </td>
                   <td *ngIf="categoria.home">
-                      <button mat-flat-button>Configurar</button>
+                      <button mat-flat-button (click)="irConfigurarHome(categoria)">Configurar</button>
                   </td>
               </tr>
             </tbody>

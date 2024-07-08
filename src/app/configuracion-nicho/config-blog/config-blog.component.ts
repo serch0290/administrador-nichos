@@ -39,7 +39,6 @@ export class ConfigBlogComponent implements OnInit{
        nombre: cleanText(this.nicho.nombre)
     }
 
-    console.log('categoria: ', this.categoria);
      this.blogService.guardarCategoria(this.nicho._id, this.categoria, nicho)
          .subscribe(response=>{
            this.consultaListadoCategorias();
@@ -87,6 +86,13 @@ export class ConfigBlogComponent implements OnInit{
    */
   irListadoNoticias(categoria: any){
     this.router.navigate([`nicho/categoria/${categoria._id}/notas`]);
+  }
+
+  /**
+   * Se configura el home
+   */
+  irConfigurarHome(categoria: any){
+    this.router.navigate([`nicho/categoria/${categoria._id}/${this.nicho._id}/home`]);
   }
 
 }

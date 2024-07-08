@@ -26,6 +26,7 @@ import { UploderComponent } from './templates/uploder/uploder.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NotaHomeComponent } from './configuracion-nicho/config-blog/nota-home/nota-home.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ConfigFtpComponent,
     NotasComponent,
     AltaNotaComponent,
-    UploderComponent
+    UploderComponent,
+    NotaHomeComponent
   ],
   imports: [
     BrowserModule,

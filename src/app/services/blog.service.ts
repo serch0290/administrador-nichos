@@ -70,4 +70,21 @@ export class BlogService
         return this._http.get(`${this.url}blog/consulta/noticia/${idNoticia}`);  
     }
 
+    /**
+     * 
+     * @returns Se guarda la home
+     */
+    guardarHome(home: any){
+        return this._http.post(`${this.url}blog/guardar/home`, home);
+    }
+
+    /**
+     * 
+     * @param idCategoria Se consulta la configuracion de la home
+     * @returns 
+     */
+    getHome(idCategoria: string){
+        return this._http.get(`${this.url}blog/consulta/home/${idCategoria}`);  
+    }
+
 }

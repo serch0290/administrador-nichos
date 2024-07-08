@@ -5,6 +5,7 @@ import { AltaNichoComponent } from './proyectos/alta-nicho/alta-nicho.component'
 import { ConfiguracionNichoComponent } from './configuracion-nicho/configuracion-nicho.component';
 import { AltaNotaComponent } from './configuracion-nicho/config-blog/alta-nota/alta-nota.component';
 import { NotasComponent } from './configuracion-nicho/config-blog/notas/notas.component';
+import { NotaHomeComponent } from './configuracion-nicho/config-blog/nota-home/nota-home.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'nicho/categoria/:idCategoria/notas/alta/:idNoticia',
     component: AltaNotaComponent
+  },
+  {
+    path: 'nicho/categoria/:idCategoria/:idNicho/home',
+    component: NotaHomeComponent
   }
 ];
 
