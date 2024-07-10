@@ -60,8 +60,9 @@ export class ConfiguracionNichoComponent implements OnInit{
 
    //QUE SIGUE
    //Generar ya todos los archivos y jsons
-   //Subir datos al FTP
+   //Agregar todos los archivos para que los suba al proyecto, todavia me faltan, seria agregarlos a files
    //crear todo en data de mysql
+   //Subir datos al FTP
    //comentarios
    //Notaas, crear pero no publicar
    //versiones se archivo si ya subi a producción

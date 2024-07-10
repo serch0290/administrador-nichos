@@ -74,8 +74,8 @@ export class BlogService
      * 
      * @returns Se guarda la home
      */
-    guardarHome(home: any){
-        return this._http.post(`${this.url}blog/guardar/home`, home);
+    guardarHome(home: any, nicho: any): Observable<any>{
+        return this._http.post(`${this.url}blog/guardar/home`, {home, nicho});
     }
 
     /**
@@ -83,8 +83,15 @@ export class BlogService
      * @param idCategoria Se consulta la configuracion de la home
      * @returns 
      */
-    getHome(idCategoria: string){
+    getHome(idCategoria: string): Observable<any>{
         return this._http.get(`${this.url}blog/consulta/home/${idCategoria}`);  
+    }
+
+    /*
+     * Se guarda la configuracion de busqueda
+    */
+    guardarBusqueda(busqueda: any, nicho: any){
+        return this._http.post(`${this.url}blog/guardar/busqueda`, {busqueda, nicho});
     }
 
 }

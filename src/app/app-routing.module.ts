@@ -33,7 +33,7 @@ const routes: Routes = [
     component: AltaNotaComponent
   },
   {
-    path: 'nicho/categoria/:idCategoria/:idNicho/home',
+    path: 'nicho/categoria/:idCategoria/home',
     component: NotaHomeComponent
   }
 ];

@@ -27,3 +27,21 @@
     </div>
 
 </div>
+<mat-divider></mat-divider>
+<div fxLayout="column" class="mt-20">
+    <mat-form-field>
+        <mat-label>Titulo:</mat-label>
+        <input matInput [(ngModel)]="buscador.noticias_style1.title" placeholder="Titulo">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Dominio:</mat-label>
+        <input matInput [(ngModel)]="buscador.noticias_style1.dominio" placeholder="Dominio">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Prefijo:</mat-label>
+        <input matInput [(ngModel)]="buscador.noticias_style1.prefijo" placeholder="Prefijo">
+    </mat-form-field>
+    <div fxLayout="column" class="mt-20" fxLayoutAlign="center end">
+        <button mat-raised-button (click)="guardarBusqueda()">Guardar Busqueda</button>
+    </div>
+</div>

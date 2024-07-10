@@ -92,7 +92,7 @@ export class ConfigBlogComponent implements OnInit{
    * Se configura el home
    */
   irConfigurarHome(categoria: any){
-    this.router.navigate([`nicho/categoria/${categoria._id}/${this.nicho._id}/home`]);
+    this.router.navigate([`nicho/categoria/${categoria._id}/home`]);
   }
 
 }

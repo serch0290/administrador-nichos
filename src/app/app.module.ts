@@ -27,6 +27,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NotaHomeComponent } from './configuracion-nicho/config-blog/nota-home/nota-home.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { NotaHomeComponent } from './configuracion-nicho/config-blog/nota-home/n
     DragDropModule,
     CKEditorModule,
     MatSlideToggleModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
