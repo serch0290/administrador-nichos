@@ -59,6 +59,15 @@ export class NichosService
     }
 
     /**
+     * 
+     * @param Se crean las tablas en mysql
+     * @returns 
+     */
+    creaEstructuraBD(id: string): Observable<any>{
+        return this._http.patch(`${this.url}nichos/crear/estructura/db/${id}`, {});
+    }
+
+    /**
      * Se hace test de conexion a BD
      */
     testBD(dataBD: any): Observable<any>{

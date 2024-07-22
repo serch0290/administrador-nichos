@@ -20,6 +20,10 @@
     <div fxLayout="row" fxLayoutAlign="center center">
         <button mat-raised-button class="mr-8" (click)="cancelar()">Cancelar</button>
         <button mat-raised-button (click)="guardarConfiguracionBD()">Guardar</button>
-        <button mat-raised-button (click)="testBD()">Validar Conexion</button>
+        <button mat-raised-button class="mr-8" (click)="testBD()">Validar Conexion</button>
+        <button mat-raised-button (click)="crearEstructuraBD()">
+            Crear Estructura
+            <span style="color: green;">{{nicho.database.estructura ? 'Estructura creada' : ''}}</span>
+        </button>
     </div>
 </div>

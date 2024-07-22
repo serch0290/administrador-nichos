@@ -39,7 +39,7 @@ export class ConfigBdComponent implements OnInit{
 
      this.nichosService.guardarConfiguracionBD(this.nicho.database, this.nicho._id, nicho)
         .subscribe(response=>{
-          this.nicho.database_id = response._id;
+          this.nicho.database._id = response._id;
         });
   }
 
@@ -55,6 +55,20 @@ export class ConfigBdComponent implements OnInit{
         .subscribe(response=>{
           this.nicho.database.conexion = response.conn;
         });
+  }
+
+  /**
+   * Se crea la estructura en BD en mysql necesaria para el nicho
+   */
+  crearEstructuraBD(){
+    if(this.nicho.database.estructura){
+       return;
+    }
+    this.nichosService.creaEstructuraBD(this.nicho.database._id)
+        .subscribe(response=>{
+          this.nicho.database = response;
+          console.log('Se creo la estructura: ', response);
+        })
   }
 
   /**

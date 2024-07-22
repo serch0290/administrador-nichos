@@ -95,4 +95,11 @@ export class ConfigBlogComponent implements OnInit{
     this.router.navigate([`nicho/categoria/${categoria._id}/home`]);
   }
 
+  /**
+   * Se regresa al home
+   */
+  regresar(){
+
+  }
+
 }
