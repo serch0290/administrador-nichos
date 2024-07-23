@@ -317,7 +317,9 @@ export class AltaNotaComponent implements OnInit{
     });
 
     let nicho = {
-      nombre: this.cleanNameVideo(this.nicho.nombre)
+      nombre: this.cleanNameVideo(this.nicho.nombre),
+      id: this.nicho._id,
+      idCategoria: this.categoria.idSQL
     }
     this.blogService.guardarNoticia(this.idCategoria, nota, nicho)
         .subscribe(response=>{

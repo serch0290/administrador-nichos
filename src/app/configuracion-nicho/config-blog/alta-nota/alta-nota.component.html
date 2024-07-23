@@ -12,6 +12,17 @@
         <mat-label>Descripcion Autor:</mat-label>
         <textarea matInput [(ngModel)]="noticia.author.descripcion" placeholder="Titulo"></textarea>
     </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Descripcion Noticia:</mat-label>
+        <textarea matInput [(ngModel)]="noticia.descripcion" placeholder="Descripcion"></textarea>
+    </mat-form-field>
+
+    <div fxLayout="column">
+        <mat-checkbox [(ngModel)]="noticia.portada">
+            Portada
+        </mat-checkbox>
+    </div>
     <div fxLayout="column">
         <app-uploder [configuracion]="opcionesUploaderAuthor" 
                      *ngIf="opcionesUploaderAuthor"
