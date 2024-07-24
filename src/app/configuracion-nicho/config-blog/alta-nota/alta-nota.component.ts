@@ -70,6 +70,7 @@ export class AltaNotaComponent implements OnInit{
           this.nicho = response.nicho;
           this.nicho.general = response.general;
           this.categoria = response.categoria;
+          console.log('categoria: ', this.categoria);
           if(this.idNoticia){
              this.consultaNoticia();
           }else{
