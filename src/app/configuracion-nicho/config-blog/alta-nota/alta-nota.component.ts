@@ -131,10 +131,19 @@ export class AltaNotaComponent implements OnInit{
           this.noticia.author.foto = event.data.url;
           break;
         case 2:
+          console.log('Event: ', event);
           detalle.img = event.data.url;
+          this.crearImagenesResize(event.data.url);
           console.log('detalle: ', detalle);
           break;
      }
+  }
+
+  crearImagenesResize(url: string){
+    this.blogService.resizeImages(url)
+        .subscribe(response=>{
+          console.log('si redimenciono las imagenes', response);
+        });
   }
 
   cleanNameVideo(cadena: any) {
