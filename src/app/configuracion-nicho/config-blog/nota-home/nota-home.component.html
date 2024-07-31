@@ -28,7 +28,8 @@
 
 </div>
 <mat-divider></mat-divider>
-<div fxLayout="column" class="mt-20">
+<h2>Datos del buscador</h2>
+<div fxLayout="column" class="mt-20" *ngIf="buscador.noticias_style1">
     <mat-form-field>
         <mat-label>Titulo:</mat-label>
         <input matInput [(ngModel)]="buscador.noticias_style1.title" placeholder="Titulo">

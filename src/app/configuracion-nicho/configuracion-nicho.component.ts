@@ -57,6 +57,7 @@ export class ConfiguracionNichoComponent implements OnInit{
    //al proyecto le falta compiar el htaccsess
    //Hacer un panorama general, al momento de subir una noticia o en algun lugar para ahi ver que le falta por subir o ocmo esta el seo entre otras cosas. bien
    //En categorias solo permitir una home, si se pone otra decir que no se puede o algo asi
+   //Hacer bonito y poner todos los loadings
 
    //QUE SIGUE
    //Generar ya todos los archivos y jsons

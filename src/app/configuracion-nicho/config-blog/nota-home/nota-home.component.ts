@@ -24,9 +24,13 @@ export class NotaHomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.idCategoria = this.activatedRoute.snapshot.params['idCategoria'];
+    this.consultaConfiguracionHome();
+    this.setBuscador();
+  }
+
+  setBuscador(){
     this.buscador.noticias_style1 = {};
     this.buscador.noticias_style1.pagination = {};
-    this.consultaConfiguracionHome();
   }
 
   /**
@@ -36,7 +40,8 @@ export class NotaHomeComponent implements OnInit{
      this.blogService.getHome(this.idCategoria)
          .subscribe(response=>{
            this.noticia = response.home || {};
-           this.buscador = response.busqueda || {};
+           if(response.busqueda) 
+           this.buscador = response.busqueda;
            this.nicho = response;
          });
   }
@@ -88,7 +93,7 @@ export class NotaHomeComponent implements OnInit{
     let nicho = {
       nombre: cleanText(this.nicho.nombre)
    }
-
+   this.buscador.categoria = this.idCategoria;
     this.blogService.guardarBusqueda(this.buscador, nicho)
         .subscribe(response=>{
           this.regresar();
