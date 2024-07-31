@@ -97,8 +97,8 @@ export class BlogService
     /** 
      * Se convierten imagenes a las resoluciones necesitadas
     */
-    resizeImages(url: string){
-        return this._http.post(`${this.url}upload/resize/image`, {url});
+    resizeImages(url: string, path: string, filename: string){
+        return this._http.post(`${this.url}upload/resize/image`, {url, path, filename});
     }
 
 }
