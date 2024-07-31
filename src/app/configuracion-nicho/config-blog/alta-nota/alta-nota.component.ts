@@ -70,6 +70,7 @@ export class AltaNotaComponent implements OnInit{
           this.nicho = response.nicho;
           this.nicho.general = response.general;
           this.categoria = response.categoria;
+          console.log('categoria: ', this.categoria);
           if(this.idNoticia){
              this.consultaNoticia();
           }else{
@@ -130,10 +131,19 @@ export class AltaNotaComponent implements OnInit{
           this.noticia.author.foto = event.data.url;
           break;
         case 2:
+          console.log('Event: ', event);
           detalle.img = event.data.url;
+          this.crearImagenesResize(event.data.url);
           console.log('detalle: ', detalle);
           break;
      }
+  }
+
+  crearImagenesResize(url: string){
+    this.blogService.resizeImages(url)
+        .subscribe(response=>{
+          console.log('si redimenciono las imagenes', response);
+        });
   }
 
   cleanNameVideo(cadena: any) {
@@ -317,7 +327,9 @@ export class AltaNotaComponent implements OnInit{
     });
 
     let nicho = {
-      nombre: this.cleanNameVideo(this.nicho.nombre)
+      nombre: this.cleanNameVideo(this.nicho.nombre),
+      id: this.nicho._id,
+      idCategoria: this.categoria.idSQL
     }
     this.blogService.guardarNoticia(this.idCategoria, nota, nicho)
         .subscribe(response=>{

@@ -58,6 +58,10 @@ export class ConfiguracionNichoComponent implements OnInit{
    //Hacer un panorama general, al momento de subir una noticia o en algun lugar para ahi ver que le falta por subir o ocmo esta el seo entre otras cosas. bien
    //En categorias solo permitir una home, si se pone otra decir que no se puede o algo asi
    //Hacer bonito y poner todos los loadings
+   //Hcaer un padron de autores y seleccionarlos, y si es nuevo nicho pues se crea uno nuevo hacer su vista y otdo el pedo
+   //Agregar validación en categoria para que no se repita el nombre
+   //Hacer validacion al cargan una iagen de nota que solo permita imagenes jpg y png y webp
+   //brew install libvips
 
    //QUE SIGUE
    //Generar ya todos los archivos y jsons

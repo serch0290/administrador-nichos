@@ -90,8 +90,15 @@ export class BlogService
     /*
      * Se guarda la configuracion de busqueda
     */
-    guardarBusqueda(busqueda: any, nicho: any){
+    guardarBusqueda(busqueda: any, nicho: any): Observable<any>{
         return this._http.post(`${this.url}blog/guardar/busqueda`, {busqueda, nicho});
+    }
+
+    /** 
+     * Se convierten imagenes a las resoluciones necesitadas
+    */
+    resizeImages(url: string){
+        return this._http.post(`${this.url}upload/resize/image`, {url});
     }
 
 }
