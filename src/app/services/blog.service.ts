@@ -97,7 +97,7 @@ export class BlogService
     /** 
      * Se convierten imagenes a las resoluciones necesitadas
     */
-    resizeImages(url: string, path: string, filename: string){
+    resizeImages(url: string, path: string, filename: string): Observable<any>{
         return this._http.post(`${this.url}upload/resize/image`, {url, path, filename});
     }
 

@@ -21,7 +21,11 @@ export class ConfigGeneralComponent implements OnInit{
       if(!this.nicho.general){
           this.nicho.general = {
             dominio: null,
-            carpetas: false,
+            carpetas: {
+              dev: false,
+              prod: false,
+              local: false
+            },
             background: '#000000',
             fuentes: [],
             filesProyecto: false,
@@ -34,14 +38,24 @@ export class ConfigGeneralComponent implements OnInit{
     }
 
     /**
-     * Se generan las carpetas del proyecto
+     * Se generan las carpetas del proyecto, solo se generan el local en la api
      */
     generarCarpetasNicho(){
        this.configuracionService.generaCarpetasNicho(this.nicho._id, this.cleanNameVideo(this.nicho.nombre), this.nicho.general)
            .subscribe(response=>{
-              this.nicho.general.carpetas = true;
+              this.nicho.general.carpetas.local = true;
               this.nicho.general._id = response._id;
            });
+    }
+
+    /**
+     * Se sube modificacion al ambiente de pruebas
+     */
+    enviarCarpetasDestino(ambiente: string){
+      this.configuracionService.subirModificacion(this.nicho.general, this.cleanNameVideo(this.nicho.nombre), ambiente)
+          .subscribe(response=>{
+            this.nicho.general.carpetas.dev = true;
+          }); 
     }
 
     cleanNameVideo(cadena: any) {

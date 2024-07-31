@@ -6,8 +6,16 @@
     </mat-form-field>
     <div class="w-100-p my-20" fxLayout="row" fxLayoutAlign="start center">
         <button mat-raised-button (click)="generarCarpetasNicho()" 
-                [disabled]="nicho.general.carpetas">Generar carpetas contenedoras</button>
-        <span *ngIf="nicho.general.carpetas" style="color: green;">Carpetas generadas</span>
+                [disabled]="nicho.general.carpetas.local">
+                Generar carpetas contenedoras
+            <i class="fa-solid fa-circle-check font-size-20 green-fg" *ngIf="nicho.general.carpetas.local"></i>
+        </button>
+        <i class="fa-brands fa-dev font-size-20 px-12 pointer" 
+           [ngClass]="{'green-fg': nicho.general.carpetas.dev, 'red-fg': !nicho.general.carpetas.dev}"
+           (click)="enviarCarpetasDestino('dev')"></i>
+        <i class="fa-brands fa-product-hunt font-size-20 pointer" 
+           [ngClass]="{'green-fg': nicho.general.carpetas.prod, 'red-fg': !nicho.general.carpetas.prod}"></i>
+        <!--<span *ngIf="nicho.general.carpetas" style="color: green;">Carpetas generadas</span>-->
     </div>
     
     <span>Selecciona el color que tendra la pagina</span>

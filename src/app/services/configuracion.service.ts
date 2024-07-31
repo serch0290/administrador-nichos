@@ -84,4 +84,13 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/generar/routing/${idNicho}`, data);
      }
 
+     /**
+      * 
+      * @param Se sube modificacion
+      * @returns 
+      */
+     subirModificacion(general: any, nombre: any, ambiente: string): Observable<any>{
+        return this._http.post(`${this.url}configuracion/subir/modificacion`, {nombre, ambiente, general});
+     }
+
 }

@@ -131,17 +131,17 @@ export class AltaNotaComponent implements OnInit{
           this.noticia.author.foto = event.data.url;
           break;
         case 2:
-          console.log('Event: ', event);
           detalle.img = event.data.url;
-          this.crearImagenesResize(event.data.url, event.data.path, event.data.filename);
+          this.crearImagenesResize(event.data.url, event.data.path, event.data.filename, detalle);
           break;
      }
   }
 
-  crearImagenesResize(url: string, path: string, filename: string){
+  crearImagenesResize(url: string, path: string, filename: string, detalle: any){
     this.blogService.resizeImages(url, path, filename)
         .subscribe(response=>{
-          console.log('si redimenciono las imagenes', response);
+          detalle.img400 = response.img400;
+          detalle.img800 = response.img800;
         });
   }
 
