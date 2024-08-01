@@ -52,6 +52,7 @@ export class ConfigGeneralComponent implements OnInit{
      * Se sube modificacion al ambiente de pruebas
      */
     enviarCarpetasDestino(ambiente: string){
+      if(this.nicho.general.carpetas.dev || !this.nicho.general.carpetas.local) return;
       this.configuracionService.subirModificacion(this.nicho.general, this.cleanNameVideo(this.nicho.nombre), ambiente)
           .subscribe(response=>{
             this.nicho.general.carpetas.dev = true;
