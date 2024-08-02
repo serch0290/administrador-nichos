@@ -26,7 +26,12 @@ export class ConfigGeneralComponent implements OnInit{
               prod: false,
               local: false
             },
-            background: '#000000',
+            background: {
+              value: '#000000',
+              local: false,
+              dev: false,
+              prod: false
+            },
             fuentes: [],
             filesProyecto: false,
             logo: null,

@@ -15,15 +15,25 @@
            (click)="enviarCarpetasDestino('dev')"></i>
         <i class="fa-brands fa-product-hunt font-size-20 pointer" 
            [ngClass]="{'green-fg': nicho.general.carpetas.prod, 'red-fg': !nicho.general.carpetas.prod}"></i>
-        <!--<span *ngIf="nicho.general.carpetas" style="color: green;">Carpetas generadas</span>-->
     </div>
     
-    <span>Selecciona el color que tendra la pagina</span>
-    <div ngx-colors-trigger
-         style="width: 50px;height: 50px;margin:10px"
-         [style.background]="nicho.general.background"
-         [(ngModel)]="nicho.general.background"
-         [formats]="['hex','rgba']"></div>
+    <div fxlayout="column">
+        <span>Selecciona el color que tendra la pagina</span>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div ngx-colors-trigger
+                style="width: 50px;height: 50px;margin:10px"
+                [style.background]="nicho.general.background.value"
+                [(ngModel)]="nicho.general.background.value"
+                [formats]="['hex','rgba']"></div>
+            <i class="fa-brands fa-circle-check font-size-20 px-12 pointer" 
+                [ngClass]="{'green-fg': nicho.general.background.local, 'red-fg': !nicho.general.background.local}"></i>
+            <i class="fa-brands fa-dev font-size-20 px-12 pointer" 
+                [ngClass]="{'green-fg': nicho.general.background.dev, 'red-fg': !nicho.general.background.dev}"></i>
+            <i class="fa-brands fa-product-hunt font-size-20 pointer" 
+                [ngClass]="{'green-fg': nicho.general.background.prod, 'red-fg': !nicho.general.background.prod}"></i>   
+        </div>
+        
+    </div>
         
     <button mat-raised-button (click)="addFiles('1')">
         Adjuntar fuentes
