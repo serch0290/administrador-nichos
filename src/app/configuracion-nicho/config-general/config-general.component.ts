@@ -38,7 +38,6 @@ export class ConfigGeneralComponent implements OnInit{
             icon: null,
           };
       }
-
       this.cargarUploader();
     }
 
@@ -172,10 +171,27 @@ export class ConfigGeneralComponent implements OnInit{
       file: data.filename,
       name: data.filename.split('.')[0]
     }
-    this.configuracionService.guardarFuente(this.nicho.general._id, fuente)
+
+    this.nicho.general.fuentes.push(fuente);
+    /*this.configuracionService.guardarFuente(this.nicho.general._id, fuente)
     .subscribe(response=>{
         this.nicho.general.fuentes = response.fuentes;
-    });
+    });*/
+  }
+
+  /**
+   * Se guarda la configuracion de fuente y colores del sitio web en local
+   */
+  guardarColorFuenteLocal(){
+    let data = {
+      fuentes: this.nicho.general.fuentes,
+      nicho: this.cleanNameVideo(this.nicho.nombre),
+      background: this.nicho.general.background.value
+    }
+     this.configuracionService.subirColorFuente(this.nicho.general._id, data)
+         .subscribe(response=>{
+           this.nicho.general = response.general;
+         });
   }
 
   /**
@@ -260,6 +276,45 @@ export class ConfigGeneralComponent implements OnInit{
     this.configuracionService.generarRutas(this.nicho._id, data)
         .subscribe(response=>{
            console.log('response: ', response);
+        });
+  }
+
+  /**
+   * Se sube archivo color y fuentes al ambiente de pruebas
+   */
+  subirColorFuenteDev(){
+    if(!this.nicho.general.background.local){
+       alert('No ha generado el archivo en local, no lo puedes enviar a pruebas');
+       return;
+    }
+
+    let comandos = [];
+    comandos.push(`cp server/nichos/${this.cleanNameVideo(this.nicho.nombre)}/assets/css/dynamic.css /Applications/XAMPP/htdocs/${this.cleanNameVideo(this.nicho.nombre)}/assets/css`);
+
+    for(let fuente of this.nicho.general.fuentes){
+        comandos.push(`cp server/nichos/${this.cleanNameVideo(this.nicho.nombre)}/assets/fonts/${fuente.file} /Applications/XAMPP/htdocs/${this.cleanNameVideo(this.nicho.nombre)}/assets/fonts`);
+    }
+
+    let campo = {
+      $set: {
+        'background.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
+  }
+
+  /**
+   * Se suben modificaciones a DEV
+   */
+  subirModificacionesDEV(commands: Array<any>, campo: any){
+    let data = {
+      commands: commands,
+      campo: campo
+    }
+    this.configuracionService.subirModificacionesDEV(this.nicho.general._id, data)
+        .subscribe(response=>{
+          this.nicho.general = response.general;
         });
   }
 

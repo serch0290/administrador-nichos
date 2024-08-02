@@ -93,4 +93,22 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/subir/modificacion`, {nombre, ambiente, general});
      }
 
+     /**
+      * 
+      * @param Se sube el dato del color y la fuente
+      * @param data 
+      * @returns 
+      */
+     subirColorFuente(id: string, data: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/subir/colores/fuente/${id}`, data);
+     }
+
+     /**
+      * 
+      * @returns Ruta que sube las modificaciones a dev
+      */
+     subirModificacionesDEV(id: string, data: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/subir/modificaciones/dev/${id}`, data);
+     }
+
 }

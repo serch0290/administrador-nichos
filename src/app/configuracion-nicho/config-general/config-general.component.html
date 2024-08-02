@@ -19,28 +19,26 @@
     
     <div fxlayout="column">
         <span>Selecciona el color que tendra la pagina</span>
-        <div fxLayout="row" fxLayoutAlign="center center">
-            <div ngx-colors-trigger
-                style="width: 50px;height: 50px;margin:10px"
-                [style.background]="nicho.general.background.value"
-                [(ngModel)]="nicho.general.background.value"
-                [formats]="['hex','rgba']"></div>
-            <i class="fa-brands fa-circle-check font-size-20 px-12 pointer" 
-                [ngClass]="{'green-fg': nicho.general.background.local, 'red-fg': !nicho.general.background.local}"></i>
-            <i class="fa-brands fa-dev font-size-20 px-12 pointer" 
-                [ngClass]="{'green-fg': nicho.general.background.dev, 'red-fg': !nicho.general.background.dev}"></i>
-            <i class="fa-brands fa-product-hunt font-size-20 pointer" 
-                [ngClass]="{'green-fg': nicho.general.background.prod, 'red-fg': !nicho.general.background.prod}"></i>   
-        </div>
-        
+        <div ngx-colors-trigger
+             style="width: 50px;height: 50px;margin:10px"
+             [style.background]="nicho.general.background.value"
+             [(ngModel)]="nicho.general.background.value"
+             [formats]="['hex','rgba']"></div>
     </div>
         
-    <button mat-raised-button (click)="addFiles('1')">
-        Adjuntar fuentes
-        <span *ngIf="nicho.general.fuentes.length > 0" style="color: green;">Fuentes subidas</span>
-    </button>
-    <input type="file" id="add-file-button1" #addfilebutton ng2FileSelect
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <input type="file" id="add-file-button1" #addfilebutton ng2FileSelect
            [uploader]="uploader" hidden />
+        <button mat-raised-button (click)="addFiles('1')">
+            Adjuntar fuentes
+        </button>
+        <i class="fa-solid fa-circle-check font-size-20 px-12 pointer" (click)="guardarColorFuenteLocal()"
+           [ngClass]="{'green-fg': nicho.general.background.local, 'red-fg': !nicho.general.background.local}"></i>
+        <i class="fa-brands fa-dev font-size-20 px-12 pointer" (click)="subirColorFuenteDev()"
+           [ngClass]="{'green-fg': nicho.general.background.dev, 'red-fg': !nicho.general.background.dev}"></i>
+        <i class="fa-brands fa-product-hunt font-size-20 pointer" 
+           [ngClass]="{'green-fg': nicho.general.background.prod, 'red-fg': !nicho.general.background.prod}"></i>   
+    </div>
     <table class="my-20" *ngIf="nicho.general.fuentes.length > 0" border="1">
         <thead>
             <tr>
