@@ -111,4 +111,12 @@ export class ConfiguracionService
         return this._http.post(`${this.url}configuracion/subir/modificaciones/dev/${id}`, data);
      }
 
+     /**
+      *
+      * Se crea el json para la imagen y el icon de la pagina
+      */
+     subirJsonImagenIcon(id: string, data: any): Observable<any>{
+        return this._http.post(`${this.url}configuracion/generar/json/logo/icon/${id}`, data); 
+     }
+
 }

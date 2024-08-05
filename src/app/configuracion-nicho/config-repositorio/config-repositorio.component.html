@@ -7,6 +7,11 @@
         <mat-label>Path</mat-label>
         <input matInput [(ngModel)]="repositorio.path" placeholder="Path">
     </mat-form-field>
+    <div fxLayout="column">
+        <mat-checkbox [(ngModel)]="repositorio.dynamic">
+            Dynamic
+        </mat-checkbox>
+    </div>
     <div fxLayout="row" fxLayoutAlign="center center">
         <button mat-raised-button class="mr-8" (click)="salir.emit(false)">Cancelar</button>
         <button mat-raised-button (click)="guardarFile()">Guardar</button>

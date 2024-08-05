@@ -43,6 +43,16 @@ export class ConfigGeneralComponent implements OnInit{
             },
             logo: null,
             icon: null,
+            jsonLogoIco: {
+              local: false,
+              dev: false,
+              prod: false
+            },
+            routing: {
+              local: false,
+              dev: false,
+              prod: false
+            }
           };
       }
       this.cargarUploader();
@@ -285,10 +295,12 @@ export class ConfigGeneralComponent implements OnInit{
   generarRouting(){
     let data = {
       dominio: this.nicho.general.dominio,
-      proyecto: this.cleanNameVideo(this.nicho.nombre)
+      proyecto: this.cleanNameVideo(this.nicho.nombre),
+      id: this.nicho.general._id
     }
     this.configuracionService.generarRutas(this.nicho._id, data)
         .subscribe(response=>{
+          this.nicho.general = response.general;
            console.log('response: ', response);
         });
   }
@@ -421,6 +433,52 @@ export class ConfigGeneralComponent implements OnInit{
       if(index !== -1){
          this.nicho.general.fuentes.splice(index, 1);
       }
+  }
+
+  /**
+   * Se genera json de json e icon local
+   */
+  generarJsonIconLogoLocal(){
+    let data = {
+       logo: this.nicho.general.logo.file,
+       icon: this.nicho.general.icon.file,
+       nombre: this.cleanNameVideo(this.nicho.nombre)
+    }
+     this.configuracionService.subirJsonImagenIcon(this.nicho.general._id, data)
+         .subscribe(response=>{
+           this.nicho.general = response.general;
+         });
+  }
+
+  /**
+   * Se genera json local en dev
+   */
+  generarJsonIconLogoDev(){
+    let comandos = [];
+    comandos.push(`cp server/nichos/${this.cleanNameVideo(this.nicho.nombre)}/assets/json/configuracionGeneral.json /Applications/XAMPP/htdocs/${this.cleanNameVideo(this.nicho.nombre)}/assets/json`);
+
+    let campo = {
+      $set: {
+        'jsonLogoIco.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
+  }
+
+  /**
+   * Se sube archivo routing a DEV
+   */
+  subirRoutingDev(){
+    let comandos = [];
+    comandos.push(`cp server/nichos/${this.cleanNameVideo(this.nicho.nombre)}/routing.php /Applications/XAMPP/htdocs/${this.cleanNameVideo(this.nicho.nombre)}`);
+    let campo = {
+      $set: {
+        'routing.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
   }
 
   /**

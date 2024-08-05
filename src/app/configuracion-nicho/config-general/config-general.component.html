@@ -135,29 +135,48 @@
         </button>
     </div>
     
-    <div fxLayout="column" class="mt-8" fxLayoutAlign="start center">
-        <button mat-raised-button>
+    <div fxLayout="row" class="mt-8" fxLayoutAlign="start center">
+        <button mat-raised-button [disabled]="!nicho.general.logo?.local && !nicho.general.icon?.local" 
+                (click)="generarJsonIconLogoLocal()">
             Generar json icon y logo
         </button>
-        <button mat-raised-button class="ml-12" [disabled]="!nicho.general.logo?.local && !nicho.general.icon?.local">
+        <button mat-raised-button class="ml-12" >
             <i class="fa-solid fa-circle-check font-size-20"  
-               [ngClass]="{'green-fg': nicho.general.icon?.local, 'red-fg': !nicho.general.icon?.local}"></i>
+               [ngClass]="{'green-fg': nicho.general.jsonLogoIco?.local, 'red-fg': !nicho.general.jsonLogoIco?.local}"></i>
         </button>
-        <button mat-raised-button class="mx-12" (click)="subirIconDev()" [disabled]="!nicho.general.logo?.dev && !nicho.general.icon?.dev">
+        <button mat-raised-button class="mx-12" [disabled]="!nicho.general.jsonLogoIco?.local" (click)="generarJsonIconLogoDev()">
             <i class="fa-brands fa-dev font-size-20 px-12" 
-               [ngClass]="{'green-fg': nicho.general.icon?.dev, 'red-fg': !nicho.general.icon?.dev}"></i>
+               [ngClass]="{'green-fg': nicho.general.jsonLogoIco?.dev, 'red-fg': !nicho.general.jsonLogoIco?.dev}"></i>
         </button>
         <button mat-raised-button [disabled]="!nicho.general.logo?.prod && !nicho.general.icon?.prod">
             <i class="fa-brands fa-product-hunt font-size-20" 
-               [ngClass]="{'green-fg': nicho.general.icon?.prod, 'red-fg': !nicho.general.icon?.prod}"></i>   
+               [ngClass]="{'green-fg': nicho.general.jsonLogoIco?.prod, 'red-fg': !nicho.general.jsonLogoIco?.prod}"></i>   
         </button>
     </div>
     
 
     <div fxlayout="column" fxLayoutAlign="start center" class="mt-20">
-        <button mat-raised-button (click)="actualizarDatosNicho()">
-            Guardar
+        <button mat-raised-button (click)="generarRouting()">
+            Routing
         </button>
 
+        <button mat-raised-button class="ml-12" >
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.routing?.local, 'red-fg': !nicho.general.routing?.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" [disabled]="!nicho.general.routing?.local"
+                (click)="subirRoutingDev()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.routing?.dev, 'red-fg': !nicho.general.routing?.dev}"></i>
+        </button>
+        <button mat-raised-button [disabled]="!nicho.general.routing?.dev">
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.routing?.prod, 'red-fg': !nicho.general.routing?.prod}"></i>   
+        </button>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start center" class="mt-20">
+        <button mat-raised-button (click)="salir.emit()">
+            Salir
+        </button>
     </div>
 </div>

@@ -36,7 +36,6 @@ export class ConfigRepositorioComponent implements OnInit{
      */
     guardarFile(){
       this.repositorio.tipo = 0;
-      this.repositorio.dynamic = false;
       this.filesService.saveFile(this.repositorio)
           .subscribe(response=>{
             this.consultaListadoRepositorio();
