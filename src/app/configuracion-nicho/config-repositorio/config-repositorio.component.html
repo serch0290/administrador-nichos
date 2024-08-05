@@ -1,0 +1,32 @@
+<div fxLayout="column">
+    <mat-form-field>
+        <mat-label>File</mat-label>
+        <input matInput [(ngModel)]="repositorio.file" placeholder="File">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Path</mat-label>
+        <input matInput [(ngModel)]="repositorio.path" placeholder="Path">
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button class="mr-8" (click)="salir.emit(false)">Cancelar</button>
+        <button mat-raised-button (click)="guardarFile()">Guardar</button>
+    </div>
+
+    <div fxLayout="column" class="mt-20">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Path</th>
+                    <th>File</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of listadoRepositorio">
+                  <td>{{file.path}}</td>
+                  <td>{{file.file}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

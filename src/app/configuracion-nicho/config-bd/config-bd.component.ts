@@ -64,7 +64,7 @@ export class ConfigBdComponent implements OnInit{
     if(this.nicho.database.estructura){
        return;
     }
-    this.nichosService.creaEstructuraBD(this.nicho.database._id)
+    this.nichosService.creaEstructuraBD(this.nicho.database._id, cleanText(this.nicho.nombre))
         .subscribe(response=>{
           this.nicho.database = response;
           console.log('Se creo la estructura: ', response);
@@ -76,6 +76,32 @@ export class ConfigBdComponent implements OnInit{
    */
   cancelar(){
     this.salir.emit(false);
+  }
+
+  /**
+   * Se suben datos de la bd al proyecto del ambiente de pruebas
+   */
+  subirModificacionesDEV(){
+      console.log('Se suben cambios al ambiente de pruebas');
+      let comandos: Array<any> = [];
+      comandos.push(`cp server/nichos/${cleanText(this.nicho.nombre)}/assets/json/conexion.json /Applications/XAMPP/htdocs/${cleanText(this.nicho.nombre)}/assets/json/conexion.json`);
+
+      let campo = {
+        _id: this.nicho.database._id,
+        $set: {
+          'ambiente.dev': true
+        }
+      }
+
+      let data = {
+        commands: comandos,
+        campo: campo
+      }
+
+      this.nichosService.subirModificacionesDEV(data)
+          .subscribe(response=>{
+            this.nicho.database = response.bd;
+          });
   }
 
 }

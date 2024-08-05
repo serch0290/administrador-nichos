@@ -10,7 +10,7 @@ export function cleanText(cadena: string): string {
         cadena = cadena.replace(new RegExp("\\" + specialChars[j], 'gi'), '');
     }
 
-    cadena = cadena.replace(/ /g, "-");
+    cadena = cadena.replace(/ /g, "_");
 
     cadena = cadena.replace(/á/gi, "a");
     cadena = cadena.replace(/é/gi, "e");

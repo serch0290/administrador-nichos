@@ -73,5 +73,18 @@ export class ConfiguracionNichoComponent implements OnInit{
    //versiones se archivo si ya subi a producción
    //Enlazado de noticias, manual ya con el tiempo programarlo a automatico
 
+   //peidntes para mañana, ver lo de generas 3 imagenes y que las tome la pagina
+   //quite la variable CMS no se porque chingados, al adjuntar una imagen
+   //Me falta que cuando se haga un cambio y aplique al ambiente de pruebas cambiar el estatus a que no hay cambio
+
+   /**
+    * <img width="896" height="512" src="http://localhost/wordpress/wp-content/uploads/2024/06/que-necesito-para-programar-en-java.png" 
+    * class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="que necesito para programar en java" style="object-fit:cover;" 
+    * decoding="async" fetchpriority="high" 
+    * srcset="http://localhost/wordpress/wp-content/uploads/2024/06/que-necesito-para-programar-en-java.png 896w, 
+    * http://localhost/wordpress/wp-content/uploads/2024/06/que-necesito-para-programar-en-java-300x171.png 300w, 
+    * http://localhost/wordpress/wp-content/uploads/2024/06/que-necesito-para-programar-en-java-768x439.png 768w" sizes="(max-width: 896px) 100vw, 896px">
+    */
+
 
 } 

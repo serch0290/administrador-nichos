@@ -32,12 +32,18 @@
         <button mat-raised-button (click)="addFiles('1')">
             Adjuntar fuentes
         </button>
-        <i class="fa-solid fa-circle-check font-size-20 px-12 pointer" (click)="guardarColorFuenteLocal()"
-           [ngClass]="{'green-fg': nicho.general.background.local, 'red-fg': !nicho.general.background.local}"></i>
-        <i class="fa-brands fa-dev font-size-20 px-12 pointer" (click)="subirColorFuenteDev()"
-           [ngClass]="{'green-fg': nicho.general.background.dev, 'red-fg': !nicho.general.background.dev}"></i>
-        <i class="fa-brands fa-product-hunt font-size-20 pointer" 
-           [ngClass]="{'green-fg': nicho.general.background.prod, 'red-fg': !nicho.general.background.prod}"></i>   
+        <button mat-raised-button class="ml-12" [disabled]="validarColoresFuentes()" (click)="guardarColorFuenteLocal()">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.background.local, 'red-fg': !nicho.general.background.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" [disabled]="validarColoresFuentes()" (click)="subirColorFuenteDev()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.background.dev, 'red-fg': !nicho.general.background.dev}"></i>
+        </button>
+        <button mat-raised-button class="px-12">
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.background.prod, 'red-fg': !nicho.general.background.prod}"></i>   
+        </button>
     </div>
     <table class="my-20" *ngIf="nicho.general.fuentes.length > 0" border="1">
         <thead>
@@ -64,32 +70,89 @@
             </tr>
         </tbody>
     </table>
-    <button mat-raised-button (click)="subirArchivos()" class="my-20">
-        Subir archivos proyecto
-        <span *ngIf="nicho.general.filesProyecto" style="color: green;">
-             Archivos agregados al proyecto
-        </span>
-    </button>
-    <button mat-raised-button class="my-20" (click)="addFiles('2')">
-        Adjuntar logo del sitio 
-        <span *ngIf="nicho.general.logo" style="color: green;">
-            Logo adjuntado
-       </span>
-    </button>
+    <div fxLayout="row" fxLayoutAlign="start center"> 
+        <button mat-raised-button (click)="subirArchivos()" class="my-20" [disabled]="!nicho.general.background.dev">
+            Subir archivos proyecto
+        </button>
+        <button mat-raised-button class="ml-12">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.filesProyecto.local, 'red-fg': !nicho.general.filesProyecto.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" (click)="subirArchivosProyectoDev()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.filesProyecto.dev, 'red-fg': !nicho.general.filesProyecto.dev}"></i>
+        </button>
+        <button mat-raised-button>
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.filesProyecto.prod, 'red-fg': !nicho.general.filesProyecto.prod}"></i>   
+        </button>
+    </div>
+    
+    <div fxLayout="row">
+        <button mat-raised-button class="my-20" (click)="addFiles('2')" [disabled]="!nicho.general.background.dev">
+            Adjuntar logo del sitio 
+        </button>
+        <input type="file" id="add-file-button2" #addfilebutton ng2FileSelect
+               [uploader]="uploader" hidden accept="image/*" />
+
+        <button mat-raised-button class="ml-12">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.logo?.local, 'red-fg': !nicho.general.logo?.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" (click)="subirLogoDev()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.logo?.dev, 'red-fg': !nicho.general.logo?.dev}"></i>
+        </button>
+        <button mat-raised-button>
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.logo?.prod, 'red-fg': !nicho.general.logo?.prod}"></i>   
+        </button>
+    </div>
+    
     <div *ngIf="nicho.general.logo">
         <img [src]="'http://localhost:3000/' + nicho.general.logo.fileCMS" class="w-100"/>
     </div>
-    <input type="file" id="add-file-button2" #addfilebutton ng2FileSelect
-           [uploader]="uploader" hidden accept="image/*" />
+   
+    <div fxLayout="row">
+        <button mat-raised-button (click)="addFiles('3')" [disabled]="!nicho.general.background.dev">
+            Adjuntar icon del sitio
+        </button>
 
-    <button mat-raised-button (click)="addFiles('3')">
-        Adjuntar icon del sitio
-        <span *ngIf="nicho.general.icon" style="color: green;">
-            Icono adjuntado
-       </span>
-    </button>
-    <input type="file" id="add-file-button3" #addfilebutton ng2FileSelect
-           [uploader]="uploader" hidden accept="image/*" />
+        <input type="file" id="add-file-button3" #addfilebutton ng2FileSelect
+              [uploader]="uploader" hidden accept="image/*" />
+
+        <button mat-raised-button class="ml-12">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.icon?.local, 'red-fg': !nicho.general.icon?.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" (click)="subirIconDev()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.icon?.dev, 'red-fg': !nicho.general.icon?.dev}"></i>
+        </button>
+        <button mat-raised-button>
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.icon?.prod, 'red-fg': !nicho.general.icon?.prod}"></i>   
+        </button>
+    </div>
+    
+    <div fxLayout="column" class="mt-8" fxLayoutAlign="start center">
+        <button mat-raised-button>
+            Generar json icon y logo
+        </button>
+        <button mat-raised-button class="ml-12" [disabled]="!nicho.general.logo?.local && !nicho.general.icon?.local">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.general.icon?.local, 'red-fg': !nicho.general.icon?.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" (click)="subirIconDev()" [disabled]="!nicho.general.logo?.dev && !nicho.general.icon?.dev">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.general.icon?.dev, 'red-fg': !nicho.general.icon?.dev}"></i>
+        </button>
+        <button mat-raised-button [disabled]="!nicho.general.logo?.prod && !nicho.general.icon?.prod">
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.general.icon?.prod, 'red-fg': !nicho.general.icon?.prod}"></i>   
+        </button>
+    </div>
+    
 
     <div fxlayout="column" fxLayoutAlign="start center" class="mt-20">
         <button mat-raised-button (click)="actualizarDatosNicho()">

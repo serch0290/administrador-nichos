@@ -25,5 +25,17 @@
             Crear Estructura
             <span style="color: green;">{{nicho.database.estructura ? 'Estructura creada' : ''}}</span>
         </button>
+        <button mat-raised-button class="ml-12">
+            <i class="fa-solid fa-circle-check font-size-20"  
+               [ngClass]="{'green-fg': nicho.database.ambiente?.local, 'red-fg': !nicho.database.ambiente?.local}"></i>
+        </button>
+        <button mat-raised-button class="mx-12" (click)="subirModificacionesDEV()">
+            <i class="fa-brands fa-dev font-size-20 px-12" 
+               [ngClass]="{'green-fg': nicho.database.ambiente?.dev, 'red-fg': !nicho.database.ambiente?.dev}"></i>
+        </button>
+        <button mat-raised-button>
+            <i class="fa-brands fa-product-hunt font-size-20" 
+               [ngClass]="{'green-fg': nicho.database.ambiente?.prod, 'red-fg': !nicho.database.ambiente?.prod}"></i>   
+        </button>
     </div>
 </div>

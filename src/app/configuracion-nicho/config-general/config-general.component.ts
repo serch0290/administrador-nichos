@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileItem, FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
+import { FilesService } from 'src/app/services/files.service';
 
 @Component({
   selector: 'app-config-general',
   templateUrl: './config-general.component.html',
   styleUrls: ['./config-general.component.scss'],
-  providers:[ConfiguracionService]
+  providers:[ConfiguracionService, FilesService]
 })
 export class ConfigGeneralComponent implements OnInit{
     
@@ -15,7 +16,9 @@ export class ConfigGeneralComponent implements OnInit{
     uploader: FileUploader = new FileUploader({url: 'http://localhost:5007/nchs/upload/file'});
     
     
-    constructor(private configuracionService: ConfiguracionService){}
+    constructor(private configuracionService: ConfiguracionService,
+                private filesService: FilesService
+    ){}
 
     ngOnInit(): void {
       if(!this.nicho.general){
@@ -33,7 +36,11 @@ export class ConfigGeneralComponent implements OnInit{
               prod: false
             },
             fuentes: [],
-            filesProyecto: false,
+            filesProyecto: {
+              local: false,
+              dev: false,
+              prod: false
+            },
             logo: null,
             icon: null,
           };
@@ -183,6 +190,11 @@ export class ConfigGeneralComponent implements OnInit{
    * Se guarda la configuracion de fuente y colores del sitio web en local
    */
   guardarColorFuenteLocal(){
+    if(this.nicho.general.background.local){
+      alert('Ya se generaron los archivos en local anteriormente.');
+      return; //Si ya se genero en local no tiene caso volver a generar
+    } 
+
     let data = {
       fuentes: this.nicho.general.fuentes,
       nicho: this.cleanNameVideo(this.nicho.nombre),
@@ -200,7 +212,8 @@ export class ConfigGeneralComponent implements OnInit{
   guardarLogo(urlFile: string, urlCMS: string){
     let logo = {
       file: urlFile, 
-      fileCMS: urlCMS
+      fileCMS: urlCMS,
+      local: true
     }
      this.configuracionService.guardarLogo(this.nicho.general._id, logo)
         .subscribe(response=>{
@@ -214,7 +227,8 @@ export class ConfigGeneralComponent implements OnInit{
   guardarIcon(urlFile: string, urlCMS: string){
     let icon = {
       file: urlFile, 
-      fileCMS: urlCMS
+      fileCMS: urlCMS,
+      local: true
     }
      this.configuracionService.guardarIcon(this.nicho.general._id, icon)
         .subscribe(response=>{
@@ -245,7 +259,7 @@ export class ConfigGeneralComponent implements OnInit{
      this.configuracionService.subirArchivos(this.nicho.general._id, this.cleanNameVideo(this.nicho.nombre))
          .subscribe(response=>{
            if(response.status){
-              this.nicho.general.filesProyecto = true;
+              this.nicho.general = response.general;
               this.generarCarpetasNicho();
            }   
          });
@@ -305,6 +319,86 @@ export class ConfigGeneralComponent implements OnInit{
   }
 
   /**
+   * Se suben los archivos del proyecto a dev
+   */
+ async subirArchivosProyectoDev(){
+    if(!this.nicho.general.filesProyecto.local){
+      alert('No ha generado el archivo en local, no lo puedes enviar a pruebas');
+      return;
+    }
+
+    if(this.nicho.general.filesProyecto.dev){
+      alert('Los archivo ya fueron generados en el ambiente de pruebas');
+      return;
+    }
+
+    let files = await this.filesService.getListadoFiles().toPromise();
+
+    let comandos = [];
+    for(let file of files){
+        comandos.push(`cp server/nichos/${this.cleanNameVideo(this.nicho.nombre)}${file.path}${file.file} /Applications/XAMPP/htdocs/${this.cleanNameVideo(this.nicho.nombre)}${file.path}${file.file}`);
+    }
+
+    let campo = {
+      $set: {
+        'filesProyecto.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
+  }
+
+  /**
+   * Se sube el logo a dev
+   */
+  subirLogoDev(){
+    if(!this.nicho.general.logo.local){
+      alert('No ha generado el logo en local, no lo puedes enviar a pruebas');
+      return;
+    }
+
+    if(this.nicho.general.logo.dev){
+      alert('El logo ya fue generado en el ambiente de pruebas');
+      return;
+    }
+
+     let comandos = [];
+     comandos.push(`cp server/nichos/${this.nicho.general.logo.file} /Applications/XAMPP/htdocs/${this.nicho.general.logo.file}`);
+     let campo = {
+      $set: {
+        'logo.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
+  }
+
+  /**
+   * Se sube el logo a dev
+   */
+  subirIconDev(){
+    if(!this.nicho.general.icon.local){
+      alert('No ha generado el icon en local, no lo puedes enviar a pruebas');
+      return;
+    }
+
+    if(this.nicho.general.icon.dev){
+      alert('El icon ya fueron generados en el ambiente de pruebas');
+      return;
+    }
+
+     let comandos = [];
+     comandos.push(`cp server/nichos/${this.nicho.general.icon.file} /Applications/XAMPP/htdocs/${this.nicho.general.icon.file}`);
+     let campo = {
+      $set: {
+        'icon.dev': true
+      }
+    }
+
+    this.subirModificacionesDEV(comandos, campo);
+  }
+
+  /**
    * Se suben modificaciones a DEV
    */
   subirModificacionesDEV(commands: Array<any>, campo: any){
@@ -327,5 +421,24 @@ export class ConfigGeneralComponent implements OnInit{
       if(index !== -1){
          this.nicho.general.fuentes.splice(index, 1);
       }
+  }
+
+  /**
+   * Se habilita el boton hasta que se selecciono solo y se adjutno aunque sea una fuente
+   */
+  validarColoresFuentes(){
+    if(!this.nicho.general.carpetas.local || !this.nicho.general.carpetas.dev){
+       return true;
+    }
+
+    if(this.nicho.general.background.value.includes('#000000')){
+       return true;
+    }
+
+    if(this.nicho.general.fuentes.length == 0){
+       return true;
+    }
+
+    return false;
   }
 }

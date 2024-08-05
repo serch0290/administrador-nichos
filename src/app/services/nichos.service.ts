@@ -1,8 +1,3 @@
-
-
-
-
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -63,8 +58,8 @@ export class NichosService
      * @param Se crean las tablas en mysql
      * @returns 
      */
-    creaEstructuraBD(id: string): Observable<any>{
-        return this._http.patch(`${this.url}nichos/crear/estructura/db/${id}`, {});
+    creaEstructuraBD(id: string, nicho: string): Observable<any>{
+        return this._http.patch(`${this.url}nichos/crear/estructura/db/${id}`, {nicho});
     }
 
     /**
@@ -72,6 +67,14 @@ export class NichosService
      */
     testBD(dataBD: any): Observable<any>{
         return this._http.post(`${this.url}nichos/test/BD`, dataBD);
+    }
+
+    /**
+     * 
+     * @returns Se suben modificaciones al ambiente de dev
+     */
+    subirModificacionesDEV(data: any): Observable<any>{
+        return this._http.post(`${this.url}nichos/subir/actualizacion/dev`, data);  
     }
 
 }

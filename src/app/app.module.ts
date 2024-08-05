@@ -28,6 +28,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NotaHomeComponent } from './configuracion-nicho/config-blog/nota-home/nota-home.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { ConfigRepositorioComponent } from './configuracion-nicho/config-repositorio/config-repositorio.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatDividerModule } from '@angular/material/divider';
     NotasComponent,
     AltaNotaComponent,
     UploderComponent,
-    NotaHomeComponent
+    NotaHomeComponent,
+    ConfigRepositorioComponent
   ],
   imports: [
     BrowserModule,

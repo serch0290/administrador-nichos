@@ -11,13 +11,15 @@
         <span class="pointer" (click)="idConfiguracion = 3;">Blog</span>
         <span class="pointer">Menu</span>
         <span class="pointer">Footer</span>
-        <span class="pointer">Config FTP para subida de archivos</span>    
+        <span class="pointer">Config FTP para subida de archivos</span>  
+        <span class="pointer" (click)="idConfiguracion = 4;">Repositorio</span>    
     </ng-container>
     
     <ng-container [ngSwitch]="idConfiguracion">
         <app-config-bd [nicho]="nicho" *ngSwitchCase="1" (salir)="idConfiguracion = 0"></app-config-bd>
         <app-config-general [nicho]="nicho" *ngSwitchCase="2" (salir)="idConfiguracion = 0"></app-config-general>
         <app-config-blog [nicho]="nicho" *ngSwitchCase="3" (salir)="idConfiguracion = 0"></app-config-blog>
+        <app-config-repositorio  *ngSwitchCase="4" (salir)="idConfiguracion = 0"></app-config-repositorio>
     </ng-container> 
 
 
