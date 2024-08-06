@@ -27,12 +27,24 @@
             <thead>
               <tr>
                   <td>Categoria</td>
+                  <td>Ambiente</td>
                   <td>Acciones</td>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let categoria of listadoCategorias">
                   <td>{{categoria.h1}}</td>
+                  <td>
+                    <button mat-raised-button class="ml-12">
+                        <i class="fa-solid fa-circle-check font-size-20"></i>
+                    </button>
+                    <button mat-raised-button class="mx-12">
+                        <i class="fa-brands fa-dev font-size-20 px-12"></i>
+                    </button>
+                    <button mat-raised-button class="px-12">
+                        <i class="fa-brands fa-product-hunt font-size-20"></i>   
+                    </button>
+                  </td>
                   <td *ngIf="!categoria.home">
                       <button mat-flat-button (click)="irListadoNoticias(categoria)">Noticias</button>
                       <button mat-flat-button>Editar</button>

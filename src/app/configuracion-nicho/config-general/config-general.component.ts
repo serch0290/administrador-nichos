@@ -485,15 +485,18 @@ export class ConfigGeneralComponent implements OnInit{
    * Se habilita el boton hasta que se selecciono solo y se adjutno aunque sea una fuente
    */
   validarColoresFuentes(){
-    if(!this.nicho.general.carpetas.local || !this.nicho.general.carpetas.dev){
+    if(!this.nicho.general.carpetas.local){
+       console.log('regresa este true');
        return true;
     }
 
     if(this.nicho.general.background.value.includes('#000000')){
+      console.log('regresa este tru2');
        return true;
     }
 
     if(this.nicho.general.fuentes.length == 0){
+      console.log('regresa este tru3');
        return true;
     }
 

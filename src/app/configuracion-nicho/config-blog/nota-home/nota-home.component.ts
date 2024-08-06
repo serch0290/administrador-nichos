@@ -43,6 +43,8 @@ export class NotaHomeComponent implements OnInit{
            if(response.busqueda) 
            this.buscador = response.busqueda;
            this.nicho = response;
+
+           console.log('respobse: ', response);
          });
   }
 

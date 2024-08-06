@@ -68,6 +68,7 @@ export class ConfigBlogComponent implements OnInit{
     this.blogService.consultaListadoCategorias(this.nicho._id)
         .subscribe(response=>{
           this.listadoCategorias = response;
+          console.log('Listado categorias: ', this.listadoCategorias);
         })
   }
 
