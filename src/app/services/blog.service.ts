@@ -101,4 +101,20 @@ export class BlogService
         return this._http.post(`${this.url}upload/resize/image`, {url, path, filename});
     }
 
+    /**
+     * Actualizar datos categoria
+     * @returns 
+     */
+    actualizarDatosCategoria(campos: any): Observable<any>{
+        return this._http.post(`${this.url}blog/actualizar/datos/categoria`, {campos});
+    }
+
+    /**
+     * 
+     * @returns Subri modificaciones DEV
+     */
+    subirModificacionesDEV(commands: Array<any>, campos: any): Observable<any>{
+        return this._http.post(`${this.url}blog/subir/modificaciones/categoria`, {commands, campos});
+    }
+
 }

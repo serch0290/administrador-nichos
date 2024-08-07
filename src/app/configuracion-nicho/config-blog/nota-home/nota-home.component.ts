@@ -70,7 +70,23 @@ export class NotaHomeComponent implements OnInit{
      this.noticia.categoria = this.idCategoria;
      this.blogService.guardarHome(this.noticia, nicho)
          .subscribe(response=>{
-           this.regresar();
+             this.actualizarEstatusAmbiente();
+         });
+  }
+
+  /**
+   * Se actualiza el estatus ambiente
+   */
+  actualizarEstatusAmbiente(){
+     let campos = {
+        _id: this.idCategoria,
+        $set : {
+          local: true
+        }
+     }
+     this.blogService.actualizarDatosCategoria(campos)
+         .subscribe(response=>{
+          this.regresar();
          })
   }
 

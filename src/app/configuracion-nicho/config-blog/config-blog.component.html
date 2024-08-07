@@ -36,13 +36,16 @@
                   <td>{{categoria.h1}}</td>
                   <td>
                     <button mat-raised-button class="ml-12">
-                        <i class="fa-solid fa-circle-check font-size-20"></i>
+                        <i class="fa-solid fa-circle-check font-size-20" 
+                           [ngClass]="{'green-fg': categoria.local, 'red-fg': !categoria.local}"></i>
                     </button>
-                    <button mat-raised-button class="mx-12">
-                        <i class="fa-brands fa-dev font-size-20 px-12"></i>
+                    <button mat-raised-button class="mx-12" [disabled]="!categoria.local" (click)="subirHomeDev(categoria)">
+                        <i class="fa-brands fa-dev font-size-20 px-12"
+                           [ngClass]="{'green-fg': categoria.dev, 'red-fg': !categoria.dev}"></i>
                     </button>
-                    <button mat-raised-button class="px-12">
-                        <i class="fa-brands fa-product-hunt font-size-20"></i>   
+                    <button mat-raised-button class="px-12" [disabled]="!categoria.dev">
+                        <i class="fa-brands fa-product-hunt font-size-20"
+                           [ngClass]="{'green-fg': categoria.prod, 'red-fg': !categoria.prod}"></i>   
                     </button>
                   </td>
                   <td *ngIf="!categoria.home">

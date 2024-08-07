@@ -76,6 +76,7 @@ export class ConfiguracionNichoComponent implements OnInit{
    //peidntes para mañana, ver lo de generas 3 imagenes y que las tome la pagina
    //quite la variable CMS no se porque chingados, al adjuntar una imagen
    //Me falta que cuando se haga un cambio y aplique al ambiente de pruebas cambiar el estatus a que no hay cambio
+   //En la categoria esta generando un .json, supongo que es del home, ver como quitarlo
 
    /**
     * <img width="896" height="512" src="http://localhost/wordpress/wp-content/uploads/2024/06/que-necesito-para-programar-en-java.png" 

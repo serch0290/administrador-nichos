@@ -79,6 +79,28 @@ export class ConfigBlogComponent implements OnInit{
     this.categoria.breadcrumb.push({name: this.categoria.nombre});
   }
 
+  /**
+   * Se sube archivo home a pruebas
+   */
+  subirHomeDev(categoria: any){
+     let comandos = [];
+     comandos.push(`cp server/nichos/${cleanText(this.nicho.nombre)}/assets/json/home.json /Applications/XAMPP/htdocs/${cleanText(this.nicho.nombre)}/assets/json`);
+     comandos.push(`cp server/nichos/${cleanText(this.nicho.nombre)}/assets/json/menu.json /Applications/XAMPP/htdocs/${cleanText(this.nicho.nombre)}/assets/json`);
+     comandos.push(`cp server/nichos/${cleanText(this.nicho.nombre)}/assets/json/footer.json /Applications/XAMPP/htdocs/${cleanText(this.nicho.nombre)}/assets/json`);
+
+     let campos = {
+      _id: categoria._id,
+        $set : {
+          dev: true
+        }
+     }
+
+     this.blogService.subirModificacionesDEV(comandos, campos)
+         .subscribe(response=>{
+          categoria = response.categoria;
+         });
+  }
+
 
 
   /**
