@@ -23,12 +23,31 @@
                 <tr>
                     <th>Path</th>
                     <th>File</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let file of listadoRepositorio">
                   <td>{{file.path}}</td>
                   <td>{{file.file}}</td>
+                  <td>
+                    <button mat-raised-button class="ml-12" (click)="subirFileAlRepoPruebas(file)">
+                        <i class="fa-solid fa-database font-size-20"  
+                           [ngClass]="{'green-fg': file.repo, 'red-fg': !file.repo}"></i>
+                    </button>
+                    <button mat-raised-button class="ml-12" [disabled]="!file.repo" (click)="subirFileLocal(file)">
+                        <i class="fa-solid fa-circle-check font-size-20"  
+                           [ngClass]="{'green-fg': file.local, 'red-fg': !file.local}"></i>
+                    </button>
+                    <button mat-raised-button class="mx-12" [disabled]="!file.local" (click)="subirFileDev(file)">
+                        <i class="fa-brands fa-dev font-size-20 px-12" 
+                           [ngClass]="{'green-fg': file.dev, 'red-fg': !file.dev}"></i>
+                    </button>
+                    <button mat-raised-button class="px-12" [disabled]="!file.dev">
+                        <i class="fa-brands fa-product-hunt font-size-20" 
+                           [ngClass]="{'green-fg': file.prod, 'red-fg': !file.prod}"></i>   
+                    </button>
+                  </td>
                 </tr>
             </tbody>
         </table>

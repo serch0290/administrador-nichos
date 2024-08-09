@@ -35,4 +35,11 @@ export class FilesService
         return this._http.post(`${this.url}files/guardar/files`, data); 
     }
 
+    /**
+     * Se sube el file al repositorio local
+     */
+    subirFile(command: string, campo: any): Observable<any>{
+      return this._http.post(`${this.url}files/subir/files`, {command, campo}); 
+    }
+
 }

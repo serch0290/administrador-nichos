@@ -200,11 +200,6 @@ export class ConfigGeneralComponent implements OnInit{
    * Se guarda la configuracion de fuente y colores del sitio web en local
    */
   guardarColorFuenteLocal(){
-    if(this.nicho.general.background.local){
-      alert('Ya se generaron los archivos en local anteriormente.');
-      return; //Si ya se genero en local no tiene caso volver a generar
-    } 
-
     let data = {
       fuentes: this.nicho.general.fuentes,
       nicho: this.cleanNameVideo(this.nicho.nombre),

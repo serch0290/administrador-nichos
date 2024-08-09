@@ -19,7 +19,7 @@
         <app-config-bd [nicho]="nicho" *ngSwitchCase="1" (salir)="idConfiguracion = 0"></app-config-bd>
         <app-config-general [nicho]="nicho" *ngSwitchCase="2" (salir)="idConfiguracion = 0"></app-config-general>
         <app-config-blog [nicho]="nicho" *ngSwitchCase="3" (salir)="idConfiguracion = 0"></app-config-blog>
-        <app-config-repositorio  *ngSwitchCase="4" (salir)="idConfiguracion = 0"></app-config-repositorio>
+        <app-config-repositorio  [nicho]="nicho" *ngSwitchCase="4" (salir)="idConfiguracion = 0"></app-config-repositorio>
     </ng-container> 
 
 
