@@ -62,6 +62,8 @@ export class ConfiguracionNichoComponent implements OnInit{
    //Agregar validación en categoria para que no se repita el nombre
    //Hacer validacion al cargan una iagen de nota que solo permita imagenes jpg y png y webp
    //brew install libvips
+   //ver si puedo hacer que paginacion lo agregue en automatico cuando ya tenga ls notas suficientes para hacerlo
+   //En repositorio que no salgan los archivos que sean dinamyc = true
 
    //QUE SIGUE
    //Generar ya todos los archivos y jsons

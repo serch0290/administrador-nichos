@@ -61,6 +61,8 @@ export class NotaHomeComponent implements OnInit{
           dominio: this.noticia.noticias_style1.dominio,
           paginasMostrar: 6
         };
+     }else{
+        delete this.noticia.noticias_style1.pagination;
      }
 
      let nicho = {
@@ -81,7 +83,9 @@ export class NotaHomeComponent implements OnInit{
      let campos = {
         _id: this.idCategoria,
         $set : {
-          local: true
+          local: true,
+          dev: false,
+          prod: false
         }
      }
      this.blogService.actualizarDatosCategoria(campos)
@@ -100,13 +104,19 @@ export class NotaHomeComponent implements OnInit{
 
   guardarBusqueda(){
     this.buscador.noticias_style1.mascara = `${this.buscador.noticias_style1.prefijo}/pagina/{idPagina}`;
-    this.buscador.noticias_style1.pagination = {
-      name: "pagina",
-      mask: `${this.buscador.noticias_style1.prefijo}/pagina/#`,
-      prefix : `${this.buscador.noticias_style1.prefijo}/pagina/`,
-      dominio: this.buscador.noticias_style1.dominio,
-      paginasMostrar: 6
-    };
+
+    if(this.noticia.paginador){
+       this.buscador.noticias_style1.pagination = {
+        name: "pagina",
+        mask: `${this.buscador.noticias_style1.prefijo}/pagina/#`,
+        prefix : `${this.buscador.noticias_style1.prefijo}/pagina/`,
+        dominio: this.buscador.noticias_style1.dominio,
+        paginasMostrar: 6
+       };
+    }else{
+      delete this.buscador.noticias_style1.pagination;
+    }
+    
 
     let nicho = {
       nombre: cleanText(this.nicho.nombre)

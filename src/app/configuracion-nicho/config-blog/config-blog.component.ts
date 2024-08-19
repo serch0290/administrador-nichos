@@ -97,7 +97,7 @@ export class ConfigBlogComponent implements OnInit{
 
      this.blogService.subirModificacionesDEV(comandos, campos)
          .subscribe(response=>{
-          categoria = response.categoria;
+          categoria.dev = response.categoria.dev;
          });
   }
 

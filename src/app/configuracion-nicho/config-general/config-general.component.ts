@@ -261,6 +261,7 @@ export class ConfigGeneralComponent implements OnInit{
   * Función para subir los archivos principales del proyecto
   */
   subirArchivos(){
+     console.log('nicho: ', this.nicho);
      this.configuracionService.subirArchivos(this.nicho.general._id, this.cleanNameVideo(this.nicho.nombre))
          .subscribe(response=>{
            if(response.status){
@@ -296,7 +297,6 @@ export class ConfigGeneralComponent implements OnInit{
     this.configuracionService.generarRutas(this.nicho._id, data)
         .subscribe(response=>{
           this.nicho.general = response.general;
-           console.log('response: ', response);
         });
   }
 
